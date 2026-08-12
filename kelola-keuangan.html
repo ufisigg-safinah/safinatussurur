@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kelola Keuangan - Safinatussurur</title>
+
+    <link
+        rel="stylesheet"
+        href="kelola-keuangan.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         SIDEBAR
+    ================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="logo">
+                S
+            </div>
+
+            <div>
+
+                <h2>
+                    Safinatussurur
+                </h2>
+
+                <p>
+                    Panel Pengurus
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGASI -->
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+
+                <span>🏠</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="kelola-anggota.html">
+
+                <span>👥</span>
+
+                Kelola Anggota
+
+            </a>
+
+
+            <a href="kelola-jadwal.html">
+
+                <span>📅</span>
+
+                Kelola Jadwal
+
+            </a>
+
+
+
+            <a
+                href="kelola-keuangan.html"
+                class="active"
+            >
+
+                <span>💰</span>
+
+                Kelola Keuangan
+
+            </a>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <button id="logout-button">
+
+                🚪 Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================
+         KONTEN UTAMA
+    ================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================
+             HEADER
+        ================================== -->
+
+        <header class="page-header">
+
+            <div>
+
+                <h1>
+                    Kelola Keuangan
+                </h1>
+
+                <p>
+                    Kelola pemasukan dan pengeluaran
+                    Grup Habsyi Safinatussurur.
+                </p>
+
+            </div>
+
+
+            <!-- INFORMASI PENGURUS -->
+
+            <div class="user-info">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Pengurus
+                    </strong>
+
+                    <small id="user-email">
+                        Memuat...
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================
+             RINGKASAN KEUANGAN
+        ================================== -->
+
+        <section class="summary-grid">
+
+
+            <!-- TOTAL PEMASUKAN -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon pemasukan-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Pemasukan
+                    </span>
+
+                    <h2 id="total-pemasukan">
+                        Rp 0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOTAL PENGELUARAN -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon pengeluaran-icon">
+                    💸
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Pengeluaran
+                    </span>
+
+                    <h2 id="total-pengeluaran">
+                        Rp 0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SALDO -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon saldo-icon">
+                    💵
+                </div>
+
+                <div>
+
+                    <span>
+                        Saldo Kas
+                    </span>
+
+                    <h2 id="saldo-kas">
+                        Rp 0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             DATA KEUANGAN
+        ================================== -->
+
+        <section class="content-card">
+
+
+            <!-- HEADER CARD -->
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Data Keuangan
+                    </h2>
+
+                    <p>
+                        Daftar seluruh transaksi
+                        keuangan Safinatussurur.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="tambah-transaksi-button"
+                    class="btn-primary"
+                >
+
+                    + Tambah Transaksi
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="search-container">
+
+                <input
+                    type="text"
+                    id="search-keuangan"
+                    placeholder="Cari keterangan, sumber, atau jenis transaksi..."
+                >
+
+            </div>
+
+
+
+            <!-- =================================
+                 TABEL TRANSAKSI
+            ================================== -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                No
+                            </th>
+
+                            <th>
+                                Tanggal
+                            </th>
+
+                            <th>
+                                Jenis
+                            </th>
+
+                            <th>
+                                Keterangan
+                            </th>
+
+                            <th>
+                                Sumber
+                            </th>
+
+                            <th>
+                                Jumlah
+                            </th>
+
+                            <th>
+                                Aksi
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="keuangan-table-body">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="loading"
+                            >
+
+                                Memuat data keuangan...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================
+         MODAL TAMBAH / EDIT TRANSAKSI
+    ================================== -->
+
+    <div
+        id="keuangan-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modal-title">
+                        Tambah Transaksi
+                    </h2>
+
+                    <p>
+                        Masukkan informasi transaksi
+                        keuangan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="close-modal"
+                    class="close-button"
+                >
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================
+                 FORM TRANSAKSI
+            ================================== -->
+
+            <form id="keuangan-form">
+
+
+                <!-- ID DOKUMEN -->
+
+                <input
+                    type="hidden"
+                    id="keuangan-id"
+                >
+
+
+
+                <!-- TANGGAL -->
+
+                <div class="form-group">
+
+                    <label for="tanggal">
+
+                        Tanggal
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="tanggal"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- JENIS -->
+
+                <div class="form-group">
+
+                    <label for="jenis">
+
+                        Jenis Transaksi
+
+                    </label>
+
+
+                    <select
+                        id="jenis"
+                        required
+                    >
+
+                        <option value="">
+                            Pilih jenis transaksi
+                        </option>
+
+                        <option value="Pemasukan">
+                            Pemasukan
+                        </option>
+
+                        <option value="Pengeluaran">
+                            Pengeluaran
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- KETERANGAN -->
+
+                <div class="form-group">
+
+                    <label for="keterangan">
+
+                        Keterangan
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="keterangan"
+                        placeholder="Contoh: Iuran anggota"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- JUMLAH -->
+
+                <div class="form-group">
+
+                    <label for="jumlah">
+
+                        Jumlah
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="jumlah"
+                        min="0"
+                        placeholder="Contoh: 50000"
+                        required
+                    >
+
+                    <small>
+                        Masukkan angka tanpa Rp atau titik.
+                    </small>
+
+                </div>
+
+
+
+                <!-- SUMBER -->
+
+                <div class="form-group">
+
+                    <label for="sumber">
+
+                        Sumber
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="sumber"
+                        placeholder="Contoh: Iuran Anggota"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CATATAN -->
+
+                <div class="form-group">
+
+                    <label for="catatan">
+
+                        Catatan
+
+                    </label>
+
+
+                    <textarea
+                        id="catatan"
+                        rows="3"
+                        placeholder="Catatan tambahan (opsional)"
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- PESAN -->
+
+                <p id="form-message"></p>
+
+
+
+                <!-- =================================
+                     TOMBOL FORM
+                ================================== -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="cancel-button"
+                        class="btn-secondary"
+                    >
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="save-button"
+                        class="btn-primary"
+                    >
+
+                        Simpan
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         JAVASCRIPT
+    ================================== -->
+
+    <script
+        type="module"
+        src="js/kelola-keuangan.js"
+    ></script>
+
+
+</body>
+
+</html>

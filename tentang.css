@@ -1,0 +1,1725 @@
+/* =========================================================
+   SAFINATUSSURUR
+   TENTANG
+   MOBILE APP ONLY
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --primary: #087a4b;
+    --primary-dark: #05603a;
+    --primary-light: #e6f6ed;
+
+    --green-soft: #f1faf5;
+    --green-card: #eaf7f0;
+
+    --gold: #c9a227;
+    --gold-light: #f8f1d8;
+
+    --dark: #12382a;
+    --text: #52675d;
+    --muted: #8b9992;
+
+    --white: #ffffff;
+
+    --background: #eef5f1;
+
+    --border: #dce9e1;
+
+    --shadow:
+        0 8px 25px
+        rgba(8, 122, 75, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+
+    width: 100%;
+
+    min-height: 100%;
+
+    background: #dfe7e2;
+}
+
+
+body {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding-bottom: 100px;
+
+    font-family:
+        "Poppins",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #dfe7e2;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+button {
+
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   APLIKASI HP ONLY
+========================================================= */
+
+body > * {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin-left: auto;
+
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   NAVBAR ATAS
+========================================================= */
+
+header.navbar {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    height: 68px;
+
+    margin: 0 auto;
+
+    padding: 0 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 4px 18px
+        rgba(8, 122, 75, 0.05);
+}
+
+
+/* =========================================================
+   NAV CONTAINER
+========================================================= */
+
+.nav-container {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.brand-logo {
+
+    width: 39px;
+
+    height: 39px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #087a4b,
+            #28b779
+        );
+
+    color: #ffffff;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 5px 14px
+        rgba(8, 122, 75, 0.14);
+}
+
+
+.brand-text {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.brand-text strong {
+
+    color: var(--dark);
+
+    font-size: 12px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.brand-text span {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   NAV MENU
+   DISIMPAN UNTUK BOTTOM NAVIGATION
+========================================================= */
+
+.nav-menu {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 12px;
+
+    top: auto;
+
+    width:
+        calc(100% - 24px);
+
+    max-width: 406px;
+
+    height: 64px;
+
+    padding: 5px;
+
+    margin: 0;
+
+    transform:
+        translateX(-50%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 4px;
+
+    align-items: center;
+
+    border:
+        1px solid
+        rgba(8, 122, 75, 0.10);
+
+    border-radius: 19px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(8, 122, 75, 0.15);
+
+    z-index: 99999;
+}
+
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.nav-menu a {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 54px;
+
+    margin: 0;
+
+    padding: 4px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2px;
+
+    border-radius: 14px;
+
+    color: #8a9891;
+
+    font-size: 6.5px;
+
+    line-height: 1.2;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ICON NAV
+========================================================= */
+
+.nav-menu a::before {
+
+    width: 28px;
+
+    height: 26px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+}
+
+
+/* Beranda */
+
+.nav-menu a:nth-child(1)::before {
+
+    content: "⌂";
+}
+
+
+/* Tentang */
+
+.nav-menu a:nth-child(2)::before {
+
+    content: "ⓘ";
+}
+
+
+/* Jadwal */
+
+.nav-menu a:nth-child(3)::before {
+
+    content: "▣";
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.nav-menu a.active {
+
+    color: var(--primary);
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8f7ef,
+            #d9f1e3
+        );
+}
+
+
+.nav-menu a.active::before {
+
+    background:
+        rgba(8, 122, 75, 0.07);
+}
+
+
+.nav-menu a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 3px;
+
+    width: 20px;
+
+    height: 2px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 20px;
+
+    background:
+        var(--gold);
+}
+
+
+/* =========================================================
+   LOGIN
+   DISEMBUNYIKAN KARENA HP ONLY
+========================================================= */
+
+.login-button {
+
+    display: none;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   SAMA KONSEPNYA DENGAN HERO JADWAL
+========================================================= */
+
+.page-header {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        16px
+        16px
+        10px;
+}
+
+
+.page-header .container {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 125px;
+
+    padding:
+        20px
+        18px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087a4b 0%,
+            #16a268 55%,
+            #28b779 100%
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(8, 122, 75, 0.16);
+}
+
+
+/* =========================================================
+   DECORASI HERO
+========================================================= */
+
+.page-header .container::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+
+    height: 150px;
+
+    right: -70px;
+
+    top: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+}
+
+
+.page-header .container::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+
+    height: 90px;
+
+    right: 45px;
+
+    bottom: -65px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   PAGE LABEL
+========================================================= */
+
+.page-label {
+
+    position: relative;
+
+    z-index: 2;
+
+    align-self: flex-start;
+
+    padding:
+        6px
+        9px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    color:
+        rgba(255, 255, 255, 0.92);
+
+    font-size: 7px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.page-header h1 {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 11px;
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+}
+
+
+.page-header p {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 290px;
+
+    margin-top: 7px;
+
+    color:
+        rgba(255, 255, 255, 0.82);
+
+    font-size: 7px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   PROFIL GRUP
+========================================================= */
+
+.about-main {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        10px
+        16px
+        25px;
+
+    background:
+        var(--background);
+}
+
+
+.about-main-grid {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   VISUAL
+========================================================= */
+
+.about-main-visual {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 150px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        var(--shadow);
+
+    overflow: hidden;
+}
+
+
+.about-main-visual::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+
+    height: 150px;
+
+    left: -75px;
+
+    bottom: -85px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(8, 122, 75, 0.05);
+}
+
+
+.about-main-visual::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+
+    height: 110px;
+
+    right: -50px;
+
+    top: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(201, 162, 39, 0.06);
+}
+
+
+/* =========================================================
+   CIRCLE
+========================================================= */
+
+.about-main-circle {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100px;
+
+    height: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #087a4b,
+            #28b779
+        );
+
+    color: #ffffff;
+
+    font-size: 40px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(8, 122, 75, 0.15);
+}
+
+
+.about-main-circle::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 116px;
+
+    height: 116px;
+
+    border:
+        1px solid
+        rgba(8, 122, 75, 0.10);
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   DEKORASI
+========================================================= */
+
+.about-decoration {
+
+    position: absolute;
+
+    z-index: 3;
+
+    color: var(--gold);
+
+    font-size: 13px;
+}
+
+
+.decoration-one {
+
+    top: 25px;
+
+    left: 28%;
+}
+
+
+.decoration-two {
+
+    right: 28%;
+
+    bottom: 22px;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   INFORMASI PROFIL
+========================================================= */
+
+.about-main-content {
+
+    width: 100%;
+
+    padding:
+        13px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.section-label {
+
+    display: inline-flex;
+
+    padding:
+        5px
+        7px;
+
+    border-radius: 20px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    font-size: 6px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+
+.about-main-content h2 {
+
+    margin-top: 8px;
+
+    color: var(--dark);
+
+    font-size: 15px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+}
+
+
+.about-main-content p {
+
+    margin-top: 8px;
+
+    color: var(--text);
+
+    font-size: 7px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   VISI MISI
+========================================================= */
+
+.vision-mission {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        20px
+        16px
+        25px;
+
+    background:
+        var(--green-soft);
+}
+
+
+.section-heading {
+
+    width: 100%;
+
+    margin-bottom: 12px;
+}
+
+
+.section-heading.center {
+
+    text-align: center;
+}
+
+
+.section-heading > span {
+
+    color:
+        var(--primary);
+
+    font-size: 6px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+}
+
+
+.section-heading h2 {
+
+    margin-top: 6px;
+
+    color:
+        var(--dark);
+
+    font-size: 18px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================================================
+   VISION GRID
+========================================================= */
+
+.vision-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   VISION CARD
+========================================================= */
+
+.vision-card {
+
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding:
+        11px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 3px 12px
+        rgba(8, 122, 75, 0.06);
+
+    overflow: hidden;
+}
+
+
+.vision-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 11px;
+
+    bottom: 11px;
+
+    width: 3px;
+
+    border-radius:
+        0 4px 4px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #087a4b,
+            #24a96f
+        );
+}
+
+
+/* =========================================================
+   VISION ICON
+========================================================= */
+
+.vision-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background:
+        var(--primary-light);
+
+    font-size: 13px;
+}
+
+
+.vision-card > span {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color:
+        var(--primary);
+
+    font-size: 6px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+}
+
+
+.vision-card h3 {
+
+    margin-top: 5px;
+
+    color:
+        var(--dark);
+
+    font-size: 9px;
+
+    line-height: 1.3;
+
+    font-weight: 800;
+}
+
+
+.vision-card p {
+
+    margin-top: 6px;
+
+    color:
+        var(--text);
+
+    font-size: 6px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   NILAI
+========================================================= */
+
+.values-section {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        20px
+        16px
+        25px;
+
+    background:
+        #ffffff;
+}
+
+
+.values-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   VALUE CARD
+========================================================= */
+
+.value-card {
+
+    position: relative;
+
+    min-width: 0;
+
+    padding:
+        11px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 3px 12px
+        rgba(8, 122, 75, 0.06);
+
+    overflow: hidden;
+}
+
+
+.value-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            #28b779
+        );
+}
+
+
+.value-number {
+
+    color:
+        var(--gold);
+
+    font-size: 8px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+
+.value-card h3 {
+
+    margin-top: 7px;
+
+    color:
+        var(--dark);
+
+    font-size: 9px;
+
+    line-height: 1.3;
+
+    font-weight: 800;
+}
+
+
+.value-card p {
+
+    margin-top: 6px;
+
+    color:
+        var(--text);
+
+    font-size: 6px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.about-quote {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        0
+        16px
+        25px;
+
+    background:
+        #ffffff;
+}
+
+
+.quote-box {
+
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        16px
+        14px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087a4b 0%,
+            #16a268 55%,
+            #28b779 100%
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(8, 122, 75, 0.14);
+
+    text-align: center;
+}
+
+
+.quote-box::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+
+    height: 110px;
+
+    right: -50px;
+
+    top: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.06);
+}
+
+
+.quote-icon {
+
+    position: relative;
+
+    z-index: 2;
+
+    color:
+        rgba(255,255,255,0.28);
+
+    font-size: 25px;
+
+    line-height: 0.7;
+}
+
+
+.quote-box p {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 7px;
+
+    color: #ffffff;
+
+    font-size: 8px;
+
+    line-height: 1.55;
+
+    font-weight: 600;
+}
+
+
+.quote-box span {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    margin-top: 7px;
+
+    color:
+        #f3df8b;
+
+    font-size: 6px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    width: 430px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    background:
+        #ffffff;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+
+.footer-grid {
+
+    width: 100%;
+
+    padding:
+        20px
+        16px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        0.8fr
+        0.8fr;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+========================================================= */
+
+.footer-brand {
+
+    min-width: 0;
+}
+
+
+.footer-brand .brand {
+
+    gap: 7px;
+}
+
+
+.footer-brand .brand-logo {
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+}
+
+
+.footer-brand .brand-text strong {
+
+    font-size: 9px;
+}
+
+
+.footer-brand .brand-text span {
+
+    font-size: 5.5px;
+}
+
+
+.footer-brand > p {
+
+    margin-top: 8px;
+
+    color:
+        var(--muted);
+
+    font-size: 5.5px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER COLUMN
+========================================================= */
+
+.footer-column {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.footer-column h4 {
+
+    margin-bottom: 2px;
+
+    color:
+        var(--dark);
+
+    font-size: 7px;
+
+    font-weight: 800;
+}
+
+
+.footer-column a {
+
+    color:
+        var(--muted);
+
+    font-size: 5.5px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+
+    width: 100%;
+
+    padding:
+        10px
+        16px;
+
+    border-top:
+        1px solid
+        #edf2ef;
+
+    color:
+        var(--muted);
+
+    font-size: 5.5px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   DESKTOP = TETAP MODEL HP
+========================================================= */
+
+@media (min-width: 431px) {
+
+    body {
+
+        background:
+            #dfe7e2;
+    }
+
+
+    header.navbar,
+    .page-header,
+    .about-main,
+    .vision-mission,
+    .values-section,
+    .about-quote,
+    .footer {
+
+        width: 430px;
+
+        max-width: 430px;
+    }
+}
+
+
+/* =========================================================
+   HP KECIL
+========================================================= */
+
+@media (max-width: 360px) {
+
+    header.navbar {
+
+        padding:
+            0 13px;
+    }
+
+
+    .brand-logo {
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 17px;
+    }
+
+
+    .brand-text strong {
+
+        font-size: 10px;
+    }
+
+
+    .brand-text span {
+
+        font-size: 6px;
+    }
+
+
+    .page-header {
+
+        padding:
+            13px
+            13px
+            9px;
+    }
+
+
+    .page-header .container {
+
+        min-height: 118px;
+
+        padding:
+            18px
+            15px;
+    }
+
+
+    .page-header h1 {
+
+        font-size: 21px;
+    }
+
+
+    .about-main,
+    .vision-mission,
+    .values-section {
+
+        padding-left: 13px;
+
+        padding-right: 13px;
+    }
+
+
+    .about-main-circle {
+
+        width: 92px;
+
+        height: 92px;
+
+        font-size: 37px;
+    }
+
+
+    .about-main-circle::before {
+
+        width: 108px;
+
+        height: 108px;
+    }
+
+
+    .vision-grid,
+    .values-grid {
+
+        gap: 6px;
+    }
+
+
+    .vision-card,
+    .value-card {
+
+        padding:
+            9px;
+    }
+
+
+    .vision-card p,
+    .value-card p {
+
+        font-size: 5.7px;
+    }
+
+
+    .footer-grid {
+
+        padding-left: 13px;
+
+        padding-right: 13px;
+
+        gap: 8px;
+    }
+}
+
+
+/* =========================================================
+   SAFE AREA IPHONE
+========================================================= */
+
+@supports (
+    padding-bottom: env(safe-area-inset-bottom)
+) {
+
+    body {
+
+        padding-bottom:
+            calc(
+                100px +
+                env(safe-area-inset-bottom)
+            );
+    }
+
+
+    .nav-menu {
+
+        bottom:
+            calc(
+                12px +
+                env(safe-area-inset-bottom)
+            );
+    }
+}

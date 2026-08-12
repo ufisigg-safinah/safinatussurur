@@ -1,0 +1,1703 @@
+/* =========================================================
+   SAFINATUSSURUR
+   BERANDA
+   MOBILE APP ONLY
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --primary: #087a4b;
+    --primary-dark: #05603a;
+    --primary-light: #e6f6ed;
+
+    --green-soft: #f1faf5;
+    --green-card: #eaf7f0;
+
+    --gold: #c9a227;
+    --gold-light: #f8f1d8;
+
+    --dark: #12382a;
+    --text: #52675d;
+    --muted: #8b9992;
+
+    --white: #ffffff;
+
+    --background: #dfe7e2;
+
+    --border: #dce9e1;
+
+    --shadow:
+        0 8px 25px rgba(8, 122, 75, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    background: #dfe7e2;
+}
+
+body {
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    font-family:
+        "Poppins",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #dfe7e2;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    padding-bottom: 100px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   APLIKASI HP
+========================================================= */
+
+body > * {
+
+    width: 430px;
+    max-width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header.navbar {
+
+    width: 430px;
+    max-width: 100%;
+
+    height: 68px;
+
+    margin: 0 auto;
+
+    padding: 0 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 4px 18px
+        rgba(8, 122, 75, 0.05);
+}
+
+
+/* =========================================================
+   NAV CONTAINER
+========================================================= */
+
+.nav-container {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.brand-logo {
+
+    width: 39px;
+    height: 39px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #087a4b,
+            #28b779
+        );
+
+    color: white;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 5px 14px
+        rgba(8, 122, 75, 0.14);
+}
+
+.brand-text {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.brand-text strong {
+
+    color: var(--dark);
+
+    font-size: 12px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.brand-text span {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-button {
+
+    flex-shrink: 0;
+
+    min-height: 34px;
+
+    padding: 0 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    font-size: 7px;
+
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   NAVIGASI ATAS DISEMBUNYIKAN
+   Bottom navigation digunakan sebagai navigasi utama
+========================================================= */
+
+.nav-menu {
+
+    display: none;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    width: 430px;
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        16px
+        16px
+        10px;
+}
+
+
+/* =========================================================
+   HERO CONTAINER
+========================================================= */
+
+.hero-container {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 300px;
+
+    padding: 22px 19px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087a4b 0%,
+            #16a268 55%,
+            #28b779 100%
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(8, 122, 75, 0.16);
+}
+
+
+/* =========================================================
+   HERO DECORATION
+========================================================= */
+
+.hero-container::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    top: -90px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.07);
+}
+
+.hero-container::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: 20px;
+    bottom: -70px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero-label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding:
+        6px 9px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.14);
+
+    color:
+        rgba(255,255,255,0.92);
+
+    font-size: 7px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero-content h1 {
+
+    margin-top: 12px;
+
+    color: white;
+
+    font-size: 27px;
+
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.hero-content h1 span {
+
+    display: block;
+
+    color:
+        #d4f4e3;
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero-content p {
+
+    max-width: 285px;
+
+    margin-top: 9px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size: 7.5px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   HERO BUTTON
+========================================================= */
+
+.hero-buttons {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    gap: 6px;
+}
+
+.btn-primary,
+.btn-secondary {
+
+    min-height: 30px;
+
+    padding:
+        0 11px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.btn-primary {
+
+    background: white;
+
+    color:
+        var(--primary);
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,0.08);
+}
+
+.btn-secondary {
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.22);
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+
+    position: absolute;
+
+    right: 13px;
+    bottom: 14px;
+
+    width: 105px;
+    height: 105px;
+
+    z-index: 1;
+}
+
+.hero-circle {
+
+    width: 76px;
+    height: 76px;
+
+    margin-left: auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.13);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+}
+
+.music-symbol {
+
+    color: white;
+
+    font-size: 36px;
+
+    font-weight: 700;
+}
+
+.hero-card {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    min-width: 102px;
+
+    padding:
+        7px 8px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,0.10);
+}
+
+.hero-card strong {
+
+    display: block;
+
+    color:
+        var(--dark);
+
+    font-size: 7px;
+}
+
+.hero-card span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        var(--muted);
+
+    font-size: 5px;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+
+    width: 100%;
+
+    padding-left: 16px;
+    padding-right: 16px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+
+    margin-bottom: 14px;
+}
+
+.section-heading.center {
+
+    text-align: center;
+}
+
+.section-heading > span {
+
+    color:
+        var(--primary);
+
+    font-size: 6.5px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+}
+
+.section-heading h2 {
+
+    margin-top: 5px;
+
+    color:
+        var(--dark);
+
+    font-size: 18px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+.section-heading p {
+
+    max-width: 280px;
+
+    margin-top: 5px;
+
+    color:
+        var(--muted);
+
+    font-size: 6.5px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.statistics {
+
+    padding:
+        18px 0 8px;
+}
+
+.statistics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+
+.stat-card {
+
+    min-height: 72px;
+
+    padding:
+        10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    background:
+        white;
+
+    box-shadow:
+        0 4px 13px
+        rgba(8,122,75,0.05);
+}
+
+.stat-icon {
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        var(--green-card);
+
+    font-size: 14px;
+}
+
+.stat-content {
+
+    min-width: 0;
+}
+
+.stat-content h3 {
+
+    color:
+        var(--dark);
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+.stat-content p {
+
+    margin-top: 4px;
+
+    color:
+        var(--muted);
+
+    font-size: 6px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+
+    padding:
+        28px 0;
+}
+
+.about-grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   ABOUT VISUAL
+========================================================= */
+
+.about-visual {
+
+    width: 100%;
+    height: 120px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e5f6ec,
+            #f4faf7
+        );
+
+    border:
+        1px solid
+        var(--border);
+}
+
+.about-symbol {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #087a4b,
+            #28b779
+        );
+
+    color: white;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 9px 20px
+        rgba(8,122,75,0.15);
+}
+
+
+/* =========================================================
+   ABOUT CONTENT
+========================================================= */
+
+.about-content {
+
+    padding:
+        0 2px;
+}
+
+.section-label {
+
+    color:
+        var(--primary);
+
+    font-size: 6.5px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+}
+
+.about-content h2 {
+
+    margin-top: 5px;
+
+    color:
+        var(--dark);
+
+    font-size: 18px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+}
+
+.about-content p {
+
+    margin-top: 8px;
+
+    color:
+        var(--text);
+
+    font-size: 7px;
+
+    line-height: 1.65;
+}
+
+.text-button {
+
+    display: inline-flex;
+
+    margin-top: 10px;
+
+    color:
+        var(--primary);
+
+    font-size: 7px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   JADWAL
+========================================================= */
+
+.schedule-section {
+
+    padding:
+        10px 0 28px;
+}
+
+.schedule-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   SCHEDULE CARD
+========================================================= */
+
+.schedule-card {
+
+    position: relative;
+
+    padding:
+        11px;
+
+    border:
+        1px solid
+        #e2ebe6;
+
+    border-radius: 13px;
+
+    background:
+        white;
+
+    box-shadow:
+        0 3px 12px
+        rgba(8,122,75,0.06);
+
+    overflow: hidden;
+}
+
+.schedule-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+
+    width: 3px;
+
+    border-radius:
+        0 4px 4px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #087a4b,
+            #24a96f
+        );
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.schedule-loading {
+
+    grid-column:
+        1 / -1;
+
+    min-height: 110px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+
+    background:
+        white;
+}
+
+.loading-icon {
+
+    font-size: 20px;
+
+    margin-bottom: 5px;
+}
+
+.schedule-loading p {
+
+    color:
+        var(--muted);
+
+    font-size: 7px;
+}
+
+
+/* =========================================================
+   SECTION ACTION
+========================================================= */
+
+.section-action {
+
+    margin-top: 12px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.section-action .btn-primary {
+
+    min-width: 130px;
+
+    background:
+        var(--primary);
+
+    color: white;
+}
+
+
+/* =========================================================
+   ACTIVITIES
+========================================================= */
+
+.activity-section {
+
+    padding:
+        5px 0 30px;
+}
+
+.activity-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 7px;
+}
+
+.activity-card {
+
+    min-height: 145px;
+
+    padding:
+        11px 9px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    background:
+        white;
+
+    box-shadow:
+        0 4px 13px
+        rgba(8,122,75,0.05);
+}
+
+.activity-icon {
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background:
+        var(--green-card);
+
+    font-size: 13px;
+}
+
+.activity-card h3 {
+
+    margin-top: 9px;
+
+    color:
+        var(--dark);
+
+    font-size: 8px;
+
+    line-height: 1.3;
+
+    font-weight: 800;
+}
+
+.activity-card p {
+
+    margin-top: 6px;
+
+    color:
+        var(--muted);
+
+    font-size: 6px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    width: 430px;
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        25px 16px 90px;
+
+    background:
+        #f7faf8;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+.footer-grid {
+
+    padding: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        1.4fr 0.8fr;
+
+    gap: 20px;
+}
+
+.footer-brand .brand {
+
+    margin-bottom: 8px;
+}
+
+.footer-brand p {
+
+    color:
+        var(--muted);
+
+    font-size: 6px;
+
+    line-height: 1.6;
+}
+
+.footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.footer-column h4 {
+
+    margin-bottom: 3px;
+
+    color:
+        var(--dark);
+
+    font-size: 7px;
+
+    font-weight: 800;
+}
+
+.footer-column a {
+
+    color:
+        var(--muted);
+
+    font-size: 6px;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+
+    width: 100%;
+
+    padding:
+        10px 16px;
+
+    border-top:
+        1px solid
+        var(--border);
+
+    color:
+        var(--muted);
+
+    text-align: center;
+
+    font-size: 6px;
+}
+
+.footer-bottom .container {
+
+    padding: 0;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 12px;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        calc(100% - 24px);
+
+    max-width: 406px;
+
+    height: 64px;
+
+    padding: 5px;
+
+    border:
+        1px solid
+        rgba(8,122,75,0.10);
+
+    border-radius: 19px;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(8,122,75,0.15);
+
+    z-index: 9998;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BOTTOM NAV - MENGGUNAKAN NAV-MENU
+========================================================= */
+
+.nav-menu {
+
+    position: fixed !important;
+
+    left: 50% !important;
+
+    bottom: 12px !important;
+
+    top: auto !important;
+
+    width:
+        calc(100% - 24px) !important;
+
+    max-width: 406px !important;
+
+    height: 64px !important;
+
+    padding: 5px !important;
+
+    margin: 0 !important;
+
+    transform:
+        translateX(-50%) !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, 1fr) !important;
+
+    gap: 4px !important;
+
+    align-items: center;
+
+    border:
+        1px solid
+        rgba(8,122,75,0.10) !important;
+
+    border-radius: 19px !important;
+
+    background:
+        rgba(255,255,255,0.96) !important;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(8,122,75,0.15) !important;
+
+    z-index: 99999 !important;
+}
+
+
+/* =========================================================
+   BOTTOM NAV ITEM
+========================================================= */
+
+.nav-menu a {
+
+    position: relative;
+
+    width: 100% !important;
+
+    height: 54px !important;
+
+    margin: 0 !important;
+
+    padding: 4px !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 2px !important;
+
+    border-radius: 14px !important;
+
+    color:
+        #8a9891 !important;
+
+    font-size: 6.5px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   ICON NAV
+========================================================= */
+
+.nav-menu a::before {
+
+    width: 28px !important;
+    height: 26px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 9px !important;
+
+    font-size: 15px !important;
+}
+
+
+/* BERANDA */
+
+.nav-menu a:nth-child(1)::before {
+
+    content: "⌂";
+}
+
+
+/* TENTANG */
+
+.nav-menu a:nth-child(2)::before {
+
+    content: "ⓘ";
+}
+
+
+/* JADWAL */
+
+.nav-menu a:nth-child(3)::before {
+
+    content: "▣";
+}
+
+
+/* =========================================================
+   SEMBUNYIKAN MENU KE-4, 5, 6
+========================================================= */
+
+.nav-menu a:nth-child(n+4) {
+
+    display: none !important;
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.nav-menu a.active {
+
+    color:
+        var(--primary) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8f7ef,
+            #d9f1e3
+        ) !important;
+}
+
+.nav-menu a.active::before {
+
+    background:
+        rgba(8,122,75,0.07);
+}
+
+.nav-menu a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 3px;
+
+    width: 20px;
+
+    height: 2px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 20px;
+
+    background:
+        var(--gold);
+}
+
+
+/* =========================================================
+   HOVER / TOUCH
+========================================================= */
+
+.nav-menu a:active {
+
+    transform:
+        scale(0.96);
+}
+
+
+/* =========================================================
+   HP KECIL
+========================================================= */
+
+@media (max-width: 360px) {
+
+    header.navbar {
+
+        padding:
+            0 13px;
+    }
+
+    .brand-logo {
+
+        width: 36px;
+        height: 36px;
+    }
+
+    .brand-text strong {
+
+        font-size: 10px;
+    }
+
+    .brand-text span {
+
+        font-size: 6px;
+    }
+
+    .login-button {
+
+        padding:
+            0 8px;
+
+        font-size: 6px;
+    }
+
+    .hero {
+
+        padding:
+            13px
+            13px
+            9px;
+    }
+
+    .hero-container {
+
+        min-height: 285px;
+
+        padding:
+            19px
+            15px;
+    }
+
+    .hero-content h1 {
+
+        font-size: 23px;
+    }
+
+    .container {
+
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .section-heading h2 {
+
+        font-size: 17px;
+    }
+
+    .stat-card {
+
+        min-height: 68px;
+
+        padding:
+            8px;
+    }
+
+    .stat-icon {
+
+        width: 31px;
+        height: 31px;
+
+        font-size: 13px;
+    }
+
+    .stat-content h3 {
+
+        font-size: 15px;
+    }
+
+    .activity-card {
+
+        min-height: 140px;
+
+        padding:
+            9px 7px;
+    }
+
+    .activity-card p {
+
+        font-size: 5.7px;
+    }
+
+    .footer {
+
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP = TETAP TAMPIL SEPERTI HP
+========================================================= */
+
+@media (min-width: 431px) {
+
+    body {
+
+        background:
+            #dfe7e2;
+    }
+
+    header.navbar,
+    .hero,
+    .statistics,
+    .about-section,
+    .schedule-section,
+    .activity-section,
+    .footer {
+
+        width: 430px;
+
+        max-width: 430px;
+    }
+}
+
+
+/* =========================================================
+   SAFE AREA IPHONE
+========================================================= */
+
+@supports (
+    padding-bottom: env(safe-area-inset-bottom)
+) {
+
+    body {
+
+        padding-bottom:
+            calc(
+                100px +
+                env(safe-area-inset-bottom)
+            );
+    }
+
+    .nav-menu {
+
+        bottom:
+            calc(
+                12px +
+                env(safe-area-inset-bottom)
+            ) !important;
+    }
+
+    body::after {
+
+        bottom:
+            calc(
+                12px +
+                env(safe-area-inset-bottom)
+            );
+    }
+}

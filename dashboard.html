@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Pengurus - Safinatussurur</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         SIDEBAR
+    ================================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="logo">
+                S
+            </div>
+
+            <div>
+                <h2>Safinatussurur</h2>
+                <p>Panel Pengurus</p>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGASI -->
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="active">
+                <span>🏠</span>
+                Dashboard
+            </a>
+
+            <a href="kelola-anggota.html">
+                <span>👥</span>
+                Kelola Anggota
+            </a>
+
+            <a href="kelola-jadwal.html">
+                <span>📅</span>
+                Kelola Jadwal
+            </a>
+
+
+            <a href="kelola-keuangan.html">
+                <span>💰</span>
+                Kelola Keuangan
+            </a>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <button id="logout-button">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================================
+         KONTEN UTAMA
+    ================================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p>
+                    Selamat datang di Sistem Informasi Manajemen
+                    Grup Habsyi Safinatussurur.
+                </p>
+
+            </div>
+
+
+            <!-- USER -->
+
+            <div class="user-info">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>Pengurus</strong>
+
+                    <small id="user-email">
+                        Memuat...
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================================
+             STATISTIK
+        ================================= -->
+
+        <section class="statistics">
+
+
+            <!-- TOTAL ANGGOTA -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>Total Anggota</span>
+
+                    <h2 id="total-anggota">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ANGGOTA AKTIF -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <span>Anggota Aktif</span>
+
+                    <h2 id="anggota-aktif">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOTAL JADWAL -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <span>Jadwal Kegiatan</span>
+
+                    <h2 id="total-jadwal">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOTAL KAS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <span>Saldo Kas</span>
+
+                    <h2 id="total-kas">
+                        Rp 0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             INFORMASI SISTEM
+        ================================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <h2>
+                    Menu Pengelolaan
+                </h2>
+
+                <p>
+                    Pilih menu untuk mengelola data
+                    Grup Habsyi Safinatussurur.
+                </p>
+
+            </div>
+
+
+
+            <!-- QUICK MENU -->
+
+            <div class="quick-menu">
+
+
+                <!-- ANGGOTA -->
+
+                <a
+                    href="kelola-anggota.html"
+                    class="menu-card"
+                >
+
+                    <span class="menu-icon">
+                        👥
+                    </span>
+
+                    <h3>
+                        Kelola Anggota
+                    </h3>
+
+                    <p>
+                        Menambah, mengubah, menghapus,
+                        dan melihat data anggota.
+                    </p>
+
+                </a>
+
+
+
+                <!-- JADWAL -->
+
+                <a
+                    href="kelola-jadwal.html"
+                    class="menu-card"
+                >
+
+                    <span class="menu-icon">
+                        📅
+                    </span>
+
+                    <h3>
+                        Kelola Jadwal
+                    </h3>
+
+                    <p>
+                        Mengatur jadwal kegiatan
+                        Grup Habsyi.
+                    </p>
+
+                </a>
+
+
+
+
+
+                <!-- KEUANGAN -->
+
+                <a
+                    href="kelola-keuangan.html"
+                    class="menu-card"
+                >
+
+                    <span class="menu-icon">
+                        💰
+                    </span>
+
+                    <h3>
+                        Kelola Keuangan
+                    </h3>
+
+                    <p>
+                        Mencatat pemasukan dan
+                        pengeluaran kas.
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script
+        type="module"
+        src="js/dashboard.js">
+    </script>
+
+</body>
+
+</html>

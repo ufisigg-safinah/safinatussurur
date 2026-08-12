@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Jadwal Kegiatan - Safinatussurur
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="jadwal.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="navbar">
+
+    <nav class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- BRAND -->
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    ♪
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>
+                        Safinatussurur
+                    </strong>
+
+                    <span>
+                        Grup Habsiyi
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- LOGIN -->
+
+            <a
+                href="login.html"
+                class="login-pengurus"
+            >
+                ♟&nbsp; Login Pengurus
+            </a>
+
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="jadwal-hero">
+
+    <div class="hero-content">
+
+
+        <span class="hero-label">
+            📅 AGENDA KEGIATAN
+        </span>
+
+
+        <h1>
+
+            Jadwal Kegiatan
+
+            <span>
+                Safinatussurur
+            </span>
+
+        </h1>
+
+
+        <p>
+            Lihat seluruh agenda kegiatan
+            Grup Habsyi Safinatussurur.
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DAFTAR JADWAL
+===================================================== -->
+
+<main class="jadwal-section">
+
+
+    <!-- HEADER -->
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Jadwal Kegiatan
+            </h2>
+
+            <p>
+                Pilih kategori untuk melihat jadwal.
+            </p>
+
+        </div>
+
+
+        <div
+            class="jumlah-jadwal"
+            id="jumlah-jadwal"
+        >
+            Memuat...
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         FILTER
+    ================================================== -->
+
+    <div class="filter-jadwal">
+
+
+        <button
+            type="button"
+            class="filter-btn"
+            data-filter="semua"
+        >
+
+            Semua
+
+        </button>
+
+
+        <button
+            type="button"
+            class="filter-btn active"
+            data-filter="mendatang"
+        >
+
+            Mendatang
+
+        </button>
+
+
+        <button
+            type="button"
+            class="filter-btn"
+            data-filter="selesai"
+        >
+
+            Selesai
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         LOADING
+    ================================================== -->
+
+    <div
+        id="jadwal-loading"
+        class="jadwal-loading"
+    >
+
+        <div class="loading-spinner"></div>
+
+        <p>
+            Memuat jadwal...
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CONTAINER JADWAL
+    ================================================== -->
+
+    <div
+        id="jadwal-container"
+        class="jadwal-container"
+    >
+
+    </div>
+
+
+
+    <!-- =================================================
+         EMPTY
+    ================================================== -->
+
+    <div
+        id="jadwal-empty"
+        class="jadwal-empty"
+        style="display: none;"
+    >
+
+        <div class="empty-icon">
+            📅
+        </div>
+
+
+        <h3>
+            Belum Ada Jadwal
+        </h3>
+
+
+        <p>
+            Belum ada jadwal yang tersedia
+            pada kategori ini.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div>
+
+            <strong>
+                Safinatussurur
+            </strong>
+
+            <p>
+                Grup Habsyi Safinatussurur
+            </p>
+
+        </div>
+
+
+        <p class="copyright">
+
+            © 2026 Safinatussurur.
+
+            <br>
+
+            Semua hak dilindungi.
+
+        </p>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="nav-menu">
+
+
+    <a href="index.html">
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Beranda
+        </span>
+
+    </a>
+
+
+    <a href="tentang.html">
+
+        <span class="nav-icon">
+            ⓘ
+        </span>
+
+        <span>
+            Tentang
+        </span>
+
+    </a>
+
+
+    <a
+        href="jadwal.html"
+        class="active"
+    >
+
+        <span class="nav-icon">
+            ▣
+        </span>
+
+        <span>
+            Jadwal
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script
+    type="module"
+    src="js/jadwal.js"
+></script>
+
+
+<script
+    src="js/filter-jadwal.js"
+></script>
+
+
+</body>
+
+</html>

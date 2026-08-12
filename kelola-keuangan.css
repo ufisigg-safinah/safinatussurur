@@ -1,0 +1,2061 @@
+/* =========================================================
+   SAFINATUSSURUR
+   KELOLA KEUANGAN
+   MODERN ISLAMIC - MOBILE ONLY
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --primary: #087a4b;
+    --primary-dark: #05603a;
+    --primary-light: #e6f6ed;
+
+    --green-soft: #f1faf5;
+    --green-card: #eaf7f0;
+
+    --gold: #c9a227;
+    --gold-light: #f8f1d8;
+
+    --dark: #12382a;
+    --text: #52675d;
+    --muted: #8b9992;
+
+    --white: #ffffff;
+    --background: #eef5f1;
+
+    --border: #dce9e1;
+
+    --danger: #b64b4b;
+    --danger-light: #fff0f0;
+    --danger-border: #f0d3d3;
+
+    --income: #087a4b;
+    --income-light: #e8f7ef;
+
+    --expense: #b64b4b;
+    --expense-light: #fff0f0;
+
+    --radius-sm: 10px;
+    --radius-md: 15px;
+    --radius-lg: 20px;
+
+    --shadow:
+        0 8px 25px rgba(8, 122, 75, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+
+    width: 100%;
+    min-height: 100%;
+
+    background: #dfe7e2;
+}
+
+body {
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    font-family:
+        "Poppins",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #dfe7e2;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   MOBILE APP CONTAINER
+========================================================= */
+
+.main-content {
+
+    width: 100%;
+    max-width: 430px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding:
+        18px
+        16px
+        105px;
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(8, 122, 75, 0.08),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            180deg,
+            #fbfdfc 0%,
+            #f1f8f4 100%
+        );
+
+    box-shadow:
+        0 0 45px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 9px;
+
+    margin-bottom: 17px;
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.page-header h1 {
+
+    color: var(--dark);
+
+    font-size: 22px;
+
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+}
+
+
+/* label */
+
+.page-header h1::before {
+
+    content: "PENGELOLAAN KEUANGAN";
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--gold);
+
+    font-size: 7px;
+
+    line-height: 1;
+
+    letter-spacing: 1.4px;
+
+    font-weight: 800;
+}
+
+
+.page-header p {
+
+    max-width: 215px;
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   USER INFO
+========================================================= */
+
+.user-info {
+
+    width: 105px;
+
+    min-height: 40px;
+
+    flex-shrink: 0;
+
+    padding: 6px 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    box-shadow:
+        0 5px 18px
+        rgba(8, 122, 75, 0.07);
+}
+
+
+.user-icon {
+
+    width: 29px;
+    height: 29px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        var(--primary-light);
+
+    font-size: 13px;
+}
+
+
+.user-info strong {
+
+    display: block;
+
+    color: var(--dark);
+
+    font-size: 7px;
+
+    line-height: 1.2;
+}
+
+
+.user-info small {
+
+    display: block;
+
+    width: 57px;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 5.5px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   SUMMARY GRID
+========================================================= */
+
+.summary-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   SUMMARY CARD
+========================================================= */
+
+.summary-card {
+
+    position: relative;
+
+    min-width: 0;
+
+    min-height: 79px;
+
+    padding: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #eaf7f0 100%
+        );
+
+    box-shadow:
+        0 7px 20px
+        rgba(8, 122, 75, 0.07);
+}
+
+
+/* decorative circle */
+
+.summary-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    top: -25px;
+    right: -25px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(8, 122, 75, 0.06);
+}
+
+
+/* =========================================================
+   SUMMARY ICON
+========================================================= */
+
+.summary-icon {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+}
+
+
+.pemasukan-icon {
+
+    background:
+        var(--income-light);
+
+    color:
+        var(--income);
+}
+
+
+.pengeluaran-icon {
+
+    background:
+        var(--expense-light);
+
+    color:
+        var(--expense);
+}
+
+
+.saldo-icon {
+
+    background:
+        var(--gold-light);
+
+    color:
+        #987718;
+}
+
+
+/* =========================================================
+   SUMMARY TEXT
+========================================================= */
+
+.summary-card > div:last-child {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.summary-card span {
+
+    display: block;
+
+    color: var(--text);
+
+    font-size: 7.5px;
+
+    line-height: 1.25;
+
+    font-weight: 600;
+}
+
+
+.summary-card h2 {
+
+    margin-top: 4px;
+
+    color: var(--dark);
+
+    font-size: 14px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   SALDO CARD
+========================================================= */
+
+.summary-card:last-child {
+
+    grid-column:
+        1 / -1;
+
+    min-height: 72px;
+}
+
+
+.summary-card:last-child h2 {
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   CONTENT CARD
+========================================================= */
+
+.content-card {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        0 7px 24px
+        rgba(8, 122, 75, 0.07);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+
+.card-header h2 {
+
+    color: var(--dark);
+
+    font-size: 16px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+}
+
+
+.card-header p {
+
+    max-width: 180px;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.btn-primary {
+
+    min-height: 34px;
+
+    padding:
+        0 10px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #15915f
+        );
+
+    color: var(--white);
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 14px
+        rgba(8, 122, 75, 0.18);
+
+    transition: 0.2s ease;
+}
+
+
+.btn-primary:active {
+
+    transform:
+        scale(0.97);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-container {
+
+    width: 100%;
+
+    margin-bottom: 12px;
+}
+
+
+.search-container input {
+
+    width: 100%;
+
+    height: 37px;
+
+    padding:
+        0 11px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background:
+        #f8fbf9;
+
+    color: var(--dark);
+
+    font-size: 8px;
+
+    transition: 0.2s ease;
+}
+
+
+.search-container input::placeholder {
+
+    color:
+        #a1aca6;
+}
+
+
+.search-container input:focus {
+
+    border-color:
+        rgba(8, 122, 75, 0.35);
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(8, 122, 75, 0.06);
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    background:
+        #ffffff;
+
+    -webkit-overflow-scrolling:
+        touch;
+}
+
+
+/* scrollbar */
+
+.table-container::-webkit-scrollbar {
+
+    height: 4px;
+}
+
+
+.table-container::-webkit-scrollbar-track {
+
+    background:
+        #edf4ef;
+}
+
+
+.table-container::-webkit-scrollbar-thumb {
+
+    background:
+        #a9cdbb;
+
+    border-radius:
+        10px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table {
+
+    width: 100%;
+
+    min-width: 640px;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+thead th {
+
+    height: 37px;
+
+    padding:
+        7px 9px;
+
+    background:
+        #edf7f1;
+
+    color:
+        var(--dark);
+
+    font-size: 7px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    text-align: left;
+
+    white-space:
+        nowrap;
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+
+thead th:first-child {
+
+    border-top-left-radius:
+        12px;
+}
+
+
+thead th:last-child {
+
+    border-top-right-radius:
+        12px;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+tbody td {
+
+    padding:
+        9px;
+
+    color:
+        var(--text);
+
+    font-size: 7.5px;
+
+    line-height: 1.35;
+
+    font-weight: 500;
+
+    vertical-align:
+        middle;
+
+    white-space:
+        nowrap;
+
+    border-bottom:
+        1px solid
+        #edf2ef;
+}
+
+
+/* =========================================================
+   ROW DEFAULT
+========================================================= */
+
+tbody tr {
+
+    transition:
+        background 0.18s ease;
+}
+
+
+tbody tr:last-child td {
+
+    border-bottom:
+        none;
+}
+
+
+/* =========================================================
+   PEMASUKAN ROW
+   Nuansa hijau
+========================================================= */
+
+tbody tr[data-jenis="Pemasukan"],
+tbody tr.pemasukan {
+
+    background:
+        linear-gradient(
+            90deg,
+            #f0faf4 0%,
+            #ffffff 75%
+        );
+}
+
+
+tbody tr[data-jenis="Pemasukan"] td:first-child,
+tbody tr.pemasukan td:first-child {
+
+    border-left:
+        3px solid
+        #4caf7d;
+}
+
+
+tbody tr[data-jenis="Pemasukan"] td {
+
+    color:
+        #45675a;
+}
+
+
+/* =========================================================
+   PENGELUARAN ROW
+   Nuansa merah
+========================================================= */
+
+tbody tr[data-jenis="Pengeluaran"],
+tbody tr.pengeluaran {
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff2f2 0%,
+            #ffffff 75%
+        );
+}
+
+
+tbody tr[data-jenis="Pengeluaran"] td:first-child,
+tbody tr.pengeluaran td:first-child {
+
+    border-left:
+        3px solid
+        #d96a6a;
+}
+
+
+tbody tr[data-jenis="Pengeluaran"] td {
+
+    color:
+        #765454;
+}
+
+
+/* =========================================================
+   JENIS TRANSAKSI
+========================================================= */
+
+.jenis-pemasukan,
+.pemasukan {
+
+    color:
+        var(--income);
+
+    font-weight:
+        800;
+}
+
+
+.jenis-pengeluaran,
+.pengeluaran {
+
+    color:
+        var(--expense);
+
+    font-weight:
+        800;
+}
+
+
+/* badge */
+
+.transaction-badge {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        55px;
+
+    min-height:
+        21px;
+
+    padding:
+        0 7px;
+
+    border-radius:
+        7px;
+
+    font-size:
+        6.5px;
+
+    font-weight:
+        800;
+}
+
+
+.transaction-badge.income {
+
+    color:
+        var(--income);
+
+    background:
+        #dff4e8;
+}
+
+
+.transaction-badge.expense {
+
+    color:
+        var(--expense);
+
+    background:
+        #fde2e2;
+}
+
+
+/* =========================================================
+   JUMLAH PEMASUKAN
+========================================================= */
+
+.amount-income {
+
+    color:
+        var(--income) !important;
+
+    font-weight:
+        800 !important;
+}
+
+
+/* =========================================================
+   JUMLAH PENGELUARAN
+========================================================= */
+
+.amount-expense {
+
+    color:
+        var(--expense) !important;
+
+    font-weight:
+        800 !important;
+}
+
+
+/* =========================================================
+   AKSI
+========================================================= */
+
+.table-container td:last-child {
+
+    min-width:
+        90px;
+}
+
+
+/* tombol aksi */
+
+.btn-edit,
+.btn-delete {
+
+    min-width:
+        31px;
+
+    height:
+        28px;
+
+    padding:
+        0 7px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        8px;
+
+    background:
+        #ffffff;
+
+    font-size:
+        8px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.18s ease;
+}
+
+
+.btn-edit {
+
+    color:
+        var(--primary);
+}
+
+
+.btn-delete {
+
+    margin-left:
+        3px;
+
+    color:
+        var(--danger);
+
+    border-color:
+        #f0dcdc;
+}
+
+
+.btn-edit:active,
+.btn-delete:active {
+
+    transform:
+        scale(0.94);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+
+    padding:
+        22px 10px !important;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted) !important;
+
+    font-size:
+        8px !important;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+
+    position:
+        fixed;
+
+    z-index:
+        10000;
+
+    inset:
+        0;
+
+    display:
+        none;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    background:
+        rgba(10, 39, 28, 0.42);
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+}
+
+
+.modal.active,
+.modal.show {
+
+    display:
+        flex;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.modal-content {
+
+    width:
+        100%;
+
+    max-width:
+        430px;
+
+    max-height:
+        88vh;
+
+    padding:
+        18px
+        16px
+        24px;
+
+    overflow-y:
+        auto;
+
+    border-radius:
+        22px
+        22px
+        0
+        0;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 -10px 40px
+        rgba(0, 0, 0, 0.18);
+
+    animation:
+        modalUp
+        0.22s ease;
+}
+
+
+@keyframes modalUp {
+
+    from {
+
+        transform:
+            translateY(30px);
+
+        opacity:
+            0;
+    }
+
+    to {
+
+        transform:
+            translateY(0);
+
+        opacity:
+            1;
+    }
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.modal-header {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        16px;
+}
+
+
+.modal-header h2 {
+
+    color:
+        var(--dark);
+
+    font-size:
+        18px;
+
+    line-height:
+        1.2;
+
+    font-weight:
+        800;
+}
+
+
+.modal-header p {
+
+    margin-top:
+        4px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        7px;
+
+    line-height:
+        1.4;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-button {
+
+    width:
+        31px;
+
+    height:
+        31px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        9px;
+
+    background:
+        #f6faf8;
+
+    color:
+        var(--text);
+
+    font-size:
+        18px;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+
+    margin-bottom:
+        12px;
+}
+
+
+.form-group label {
+
+    display:
+        block;
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--dark);
+
+    font-size:
+        8px;
+
+    line-height:
+        1.2;
+
+    font-weight:
+        700;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width:
+        100%;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        10px;
+
+    outline:
+        none;
+
+    background:
+        #f9fcfa;
+
+    color:
+        var(--dark);
+
+    font-size:
+        9px;
+}
+
+
+.form-group input,
+.form-group select {
+
+    height:
+        39px;
+
+    padding:
+        0 10px;
+}
+
+
+.form-group textarea {
+
+    min-height:
+        75px;
+
+    padding:
+        10px;
+
+    resize:
+        vertical;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color:
+        rgba(8, 122, 75, 0.35);
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(8, 122, 75, 0.06);
+}
+
+
+.form-group small {
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        6.5px;
+
+    line-height:
+        1.4;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+#form-message {
+
+    min-height:
+        16px;
+
+    margin:
+        4px 0 10px;
+
+    color:
+        var(--danger);
+
+    font-size:
+        7px;
+
+    line-height:
+        1.4;
+
+    text-align:
+        center;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        8px;
+
+    margin-top:
+        7px;
+}
+
+
+.btn-secondary {
+
+    min-height:
+        39px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        10px;
+
+    background:
+        #f5f9f7;
+
+    color:
+        var(--text);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   MOBILE BOTTOM NAVIGATION
+========================================================= */
+
+.sidebar {
+
+    position:
+        fixed;
+
+    z-index:
+        9999;
+
+    left:
+        50%;
+
+    bottom:
+        10px;
+
+    width:
+        calc(100% - 20px);
+
+    max-width:
+        410px;
+
+    height:
+        67px;
+
+    padding:
+        6px;
+
+    transform:
+        translateX(-50%);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    border:
+        1px solid
+        rgba(8, 122, 75, 0.10);
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(8, 122, 75, 0.15);
+}
+
+
+/* =========================================================
+   SIDEBAR HEADER HIDDEN
+========================================================= */
+
+.sidebar-header {
+
+    display:
+        none;
+}
+
+
+/* =========================================================
+   SIDEBAR NAV
+========================================================= */
+
+.sidebar-nav {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        3px;
+}
+
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.sidebar-nav a {
+
+    position:
+        relative;
+
+    height:
+        100%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        2px;
+
+    border-radius:
+        14px;
+
+    color:
+        #8a9891;
+
+    font-size:
+        6.5px;
+
+    line-height:
+        1.2;
+
+    font-weight:
+        600;
+}
+
+
+.sidebar-nav a span {
+
+    width:
+        30px;
+
+    height:
+        27px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        9px;
+
+    font-size:
+        15px;
+}
+
+
+/* =========================================================
+   ACTIVE NAV
+========================================================= */
+
+.sidebar-nav a.active {
+
+    color:
+        var(--primary);
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8f7ef,
+            #d9f1e3
+        );
+}
+
+
+.sidebar-nav a.active span {
+
+    background:
+        rgba(8, 122, 75, 0.07);
+}
+
+
+.sidebar-nav a.active::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    bottom:
+        3px;
+
+    width:
+        20px;
+
+    height:
+        2px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        20px;
+
+    background:
+        var(--gold);
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.sidebar-bottom {
+
+    position:
+        absolute;
+
+    right:
+        0;
+
+    top:
+        -42px;
+}
+
+
+#logout-button {
+
+    height:
+        31px;
+
+    padding:
+        0 10px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        rgba(182, 75, 75, 0.12);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    color:
+        var(--danger);
+
+    font-size:
+        7px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================================
+   ISLAMIC DECORATION
+========================================================= */
+
+.content-card::after {
+
+    content:
+        "✦   ☾   ✦";
+
+    display:
+        block;
+
+    margin:
+        16px auto 0;
+
+    text-align:
+        center;
+
+    color:
+        rgba(201, 162, 39, 0.38);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        3px;
+}
+
+
+/* =========================================================
+   DESKTOP
+   TETAP DALAM FRAME HP
+========================================================= */
+
+@media (min-width: 431px) {
+
+    body {
+
+        background:
+            #dfe7e2;
+    }
+
+
+    .main-content {
+
+        width:
+            430px;
+
+        max-width:
+            430px;
+
+        margin:
+            0 auto;
+    }
+
+
+    .sidebar {
+
+        width:
+            410px;
+
+        max-width:
+            410px;
+    }
+}
+
+
+/* =========================================================
+   HP KECIL
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .main-content {
+
+        padding-left:
+            13px;
+
+        padding-right:
+            13px;
+    }
+
+
+    .page-header h1 {
+
+        font-size:
+            20px;
+    }
+
+
+    .page-header p {
+
+        max-width:
+            185px;
+
+        font-size:
+            7px;
+    }
+
+
+    .user-info {
+
+        width:
+            94px;
+    }
+
+
+    .summary-grid {
+
+        gap:
+            7px;
+    }
+
+
+    .summary-card {
+
+        min-height:
+            74px;
+
+        padding:
+            9px;
+
+        gap:
+            7px;
+    }
+
+
+    .summary-icon {
+
+        width:
+            33px;
+
+        height:
+            33px;
+
+        font-size:
+            14px;
+    }
+
+
+    .summary-card span {
+
+        font-size:
+            7px;
+    }
+
+
+    .summary-card h2 {
+
+        font-size:
+            13px;
+    }
+
+
+    .summary-card:last-child h2 {
+
+        font-size:
+            15px;
+    }
+
+
+    .content-card {
+
+        padding:
+            12px;
+    }
+
+
+    .card-header h2 {
+
+        font-size:
+            15px;
+    }
+
+
+    .card-header p {
+
+        font-size:
+            6.5px;
+    }
+
+
+    .btn-primary {
+
+        font-size:
+            6.5px;
+
+        padding:
+            0 8px;
+    }
+
+
+    thead th {
+
+        font-size:
+            6.5px;
+
+        padding:
+            7px;
+    }
+
+
+    tbody td {
+
+        font-size:
+            7px;
+
+        padding:
+            8px 7px;
+    }
+
+
+    .sidebar-nav a {
+
+        font-size:
+            6px;
+    }
+}
+
+
+/* =========================================================
+   SAFE AREA IPHONE
+========================================================= */
+
+@supports (
+    padding-bottom: env(safe-area-inset-bottom)
+) {
+
+    .main-content {
+
+        padding-bottom:
+            calc(
+                105px +
+                env(safe-area-inset-bottom)
+            );
+    }
+
+
+    .sidebar {
+
+        bottom:
+            calc(
+                10px +
+                env(safe-area-inset-bottom)
+            );
+    }
+}

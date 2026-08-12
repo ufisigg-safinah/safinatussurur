@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Kelola Jadwal - Safinatussurur</title>
+
+    <link rel="stylesheet"
+          href="kelola-jadwal.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     SIDEBAR
+================================== -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-header">
+
+        <div class="logo">
+            S
+        </div>
+
+        <div>
+
+            <h2>Safinatussurur</h2>
+
+            <p>
+                Panel Pengurus
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html">
+
+            <span>🏠</span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="kelola-anggota.html">
+
+            <span>👥</span>
+
+            Kelola Anggota
+
+        </a>
+
+
+        <a href="kelola-jadwal.html"
+           class="active">
+
+            <span>📅</span>
+
+            Kelola Jadwal
+
+        </a>
+
+
+
+
+        <a href="kelola-keuangan.html">
+
+            <span>💰</span>
+
+            Kelola Keuangan
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button id="logout-button">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =================================
+     KONTEN UTAMA
+================================== -->
+
+<main class="main-content">
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <div>
+
+            <h1>
+                Kelola Jadwal
+            </h1>
+
+            <p>
+                Kelola jadwal kegiatan Grup Habsyi
+                Safinatussurur.
+            </p>
+
+        </div>
+
+
+        <div class="user-info">
+
+            <div class="user-icon">
+                👤
+            </div>
+
+            <div>
+
+                <strong>
+                    Pengurus
+                </strong>
+
+                <small id="user-email">
+                    Memuat...
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================
+         DATA JADWAL
+    ================================== -->
+
+    <section class="content-card">
+
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>
+                    Data Jadwal
+                </h2>
+
+                <p>
+                    Daftar seluruh jadwal kegiatan
+                    Safinatussurur.
+                </p>
+
+            </div>
+
+
+            <button
+                id="tambah-jadwal-button"
+                class="btn-primary"
+            >
+
+                + Tambah Jadwal
+
+            </button>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="search-jadwal"
+                placeholder="Cari acara, lokasi, atau pengundang..."
+            >
+
+        </div>
+
+
+
+        <!-- TABEL -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>No</th>
+
+                        <th>Tanggal</th>
+
+                        <th>Waktu</th>
+
+                        <th>Acara</th>
+
+                        <th>Lokasi</th>
+
+                        <th>Pengundang</th>
+
+                        <th>Kontak</th>
+
+                        <th>Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="jadwal-table-body">
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="loading"
+                        >
+
+                            Memuat data jadwal...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         MODAL TAMBAH / EDIT
+================================== -->
+
+    <div
+        id="jadwal-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modal-title">
+                        Tambah Jadwal
+                    </h2>
+
+                    <p>
+                        Masukkan informasi kegiatan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="close-modal"
+                    class="close-button"
+                >
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="jadwal-form">
+
+
+                <!-- ID DOKUMEN -->
+
+                <input
+                    type="hidden"
+                    id="jadwal-id"
+                >
+
+
+                <!-- TANGGAL -->
+
+                <div class="form-group">
+
+                    <label for="tanggal">
+
+                        Tanggal Kegiatan
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="tanggal"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- WAKTU -->
+
+                <div class="form-group">
+
+                    <label for="waktu">
+
+                        Waktu Kegiatan
+
+                    </label>
+
+                    <input
+                        type="time"
+                        id="waktu"
+                        required
+                    >
+
+                    <small class="input-help">
+
+                        Waktu akan ditampilkan sebagai WITA.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- ACARA -->
+
+                <div class="form-group">
+
+                    <label for="acara">
+
+                        Nama Acara
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="acara"
+                        placeholder="Contoh: Pembacaan Habsyi"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- LOKASI -->
+
+                <div class="form-group">
+
+                    <label for="lokasi">
+
+                        Lokasi
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lokasi"
+                        placeholder="Contoh: Masjid Al-Muhajirin"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PENGUNDANG -->
+
+                <div class="form-group">
+
+                    <label for="pengundang">
+
+                        Pengundang
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pengundang"
+                        placeholder="Nama pengundang"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- MAPS -->
+
+                <div class="form-group">
+
+                    <label for="maps">
+
+                        Link Google Maps
+
+                    </label>
+
+                    <input
+                        type="url"
+                        id="maps"
+                        placeholder="https://maps.google.com/..."
+                    >
+
+                    <small class="input-help">
+
+                        Bisa dikosongkan jika belum ada.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- WHATSAPP -->
+
+                <div class="form-group">
+
+                    <label for="whatsapp">
+
+                        Nomor WhatsApp
+
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="whatsapp"
+                        placeholder="Contoh: 628123456789"
+                    >
+
+                    <small class="input-help">
+
+                        Gunakan format 628xxxx tanpa tanda +.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- PESAN -->
+
+                <p id="form-message"></p>
+
+
+
+                <!-- ACTION -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="cancel-button"
+                        class="btn-secondary"
+                    >
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="save-button"
+                        class="btn-primary"
+                    >
+
+                        Simpan
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =================================
+     JAVASCRIPT
+================================== -->
+
+<script type="module" src="js/kelola-jadwal.js"></script>
+
+
+</body>
+
+</html>

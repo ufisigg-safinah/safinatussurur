@@ -1,0 +1,260 @@
+/* =========================================
+   ANGGOTA.CSS
+   Sistem Informasi Safinatussurur
+========================================= */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7f6;
+    color: #263238;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+header {
+    background: #0f766e;
+    padding: 18px 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #d1fae5;
+}
+
+
+/* Logo / Nama Grup */
+header a:first-child {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+
+/* Navigasi */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 25px;
+}
+
+
+/* Judul halaman */
+main > h1 {
+    font-size: 36px;
+    color: #115e59;
+    margin-bottom: 12px;
+}
+
+
+/* Deskripsi */
+main > p {
+    color: #64748b;
+    margin-bottom: 40px;
+}
+
+
+/* =========================================
+   JUDUL DAFTAR
+========================================= */
+
+main > section > p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0f766e;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+main h2 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   CONTAINER ANGGOTA
+========================================= */
+
+#anggota-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+
+/* =========================================
+   CARD ANGGOTA
+========================================= */
+
+.member-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 5px 20px rgba(15, 118, 110, 0.08);
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    transition: all 0.3s ease;
+}
+
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.15);
+}
+
+
+/* =========================================
+   ICON ANGGOTA
+========================================= */
+
+.member-icon {
+    width: 60px;
+    height: 60px;
+
+    background: #ccfbf1;
+    color: #0f766e;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   INFORMASI ANGGOTA
+========================================= */
+
+.member-info {
+    flex: 1;
+}
+
+
+.member-info h3 {
+    font-size: 18px;
+    color: #134e4a;
+    margin-bottom: 5px;
+}
+
+
+.member-info p {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+
+/* Status */
+.member-info span {
+    display: inline-block;
+
+    background: #dcfce7;
+    color: #166534;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 18px 25px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    main {
+        padding: 40px 18px;
+    }
+
+    main > h1 {
+        font-size: 30px;
+    }
+
+    #anggota-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    header a:first-child {
+        font-size: 18px;
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 8px 15px;
+    }
+
+    main > h1 {
+        font-size: 26px;
+    }
+
+    .member-card {
+        padding: 18px;
+    }
+
+}

@@ -1,0 +1,320 @@
+/* ========================================
+   LOGIN CSS
+   Sistem Informasi Safinatussurur
+======================================== */
+
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* BODY */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #ecfdf5,
+        #f0fdfa
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #1e293b;
+}
+
+
+/* ========================================
+   LOGIN CONTAINER
+======================================== */
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 20px;
+}
+
+
+/* ========================================
+   LOGIN CARD
+======================================== */
+
+.login-card {
+    background: #ffffff;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    border: 1px solid #dbe5e2;
+
+    box-shadow:
+        0 15px 40px rgba(15, 118, 110, 0.12);
+}
+
+
+/* ========================================
+   HEADER LOGIN
+======================================== */
+
+.login-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+/* LOGO */
+
+.logo {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #0f766e;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px rgba(15, 118, 110, 0.25);
+}
+
+
+/* JUDUL */
+
+.login-header h1 {
+    color: #115e59;
+
+    font-size: 25px;
+
+    margin-bottom: 6px;
+}
+
+
+/* SUBJUDUL */
+
+.login-header p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+/* LABEL */
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* INPUT */
+
+.form-group input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+
+/* INPUT FOCUS */
+
+.form-group input:focus {
+    border-color: #0f766e;
+
+    box-shadow:
+        0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+
+/* PLACEHOLDER */
+
+.form-group input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* ========================================
+   BUTTON LOGIN
+======================================== */
+
+#login-button {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #0f766e;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+/* HOVER */
+
+#login-button:hover {
+    background: #115e59;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 15px rgba(15, 118, 110, 0.2);
+}
+
+
+/* ACTIVE */
+
+#login-button:active {
+    transform: translateY(0);
+}
+
+
+/* DISABLED */
+
+#login-button:disabled {
+    background: #94a3b8;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ========================================
+   PESAN LOGIN
+======================================== */
+
+#login-message {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   LINK KEMBALI
+======================================== */
+
+.back-link {
+    text-align: center;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+.back-link a {
+    color: #0f766e;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+.back-link a:hover {
+    color: #115e59;
+
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 480px) {
+
+    .login-container {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+
+        border-radius: 16px;
+    }
+
+    .login-header h1 {
+        font-size: 22px;
+    }
+
+    .logo {
+        width: 58px;
+        height: 58px;
+
+        font-size: 24px;
+    }
+
+}

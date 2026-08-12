@@ -1,0 +1,586 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f8f7fc;
+    color: #172033;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1120px, calc(100% - 40px));
+    margin: auto;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(255,255,255,.96);
+
+    border-bottom: 1px solid #eeeaf7;
+
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    width: min(1200px, calc(100% - 40px));
+    min-height: 76px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-logo {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #6d28d9,
+        #9333ea
+    );
+
+    color: white;
+
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.2;
+}
+
+.brand-text strong {
+    font-size: 15px;
+}
+
+.brand-text span {
+    color: #7a8194;
+    font-size: 11px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-menu a {
+    padding: 9px 13px;
+
+    border-radius: 9px;
+
+    color: #4b5568;
+
+    font-size: 14px;
+
+    transition: .25s;
+}
+
+.nav-menu a:hover {
+    background: #f3edff;
+    color: #6d28d9;
+}
+
+.nav-menu a.active {
+    background: #eee7ff;
+    color: #6d28d9;
+
+    font-weight: 600;
+}
+
+.login-button {
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    background: #6d28d9;
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.login-button:hover {
+    background: #5b21b6;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.page-header {
+    padding: 80px 0;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d28d9,
+            #9333ea
+        );
+}
+
+.page-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #eadfff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.page-header h1 {
+    margin-bottom: 15px;
+
+    font-size: clamp(38px, 6vw, 58px);
+
+    line-height: 1.1;
+}
+
+.page-header p {
+    max-width: 650px;
+
+    color: #eee7ff;
+
+    font-size: 16px;
+}
+
+
+/* ================================
+   MEMBERS
+================================ */
+
+.members-section {
+    padding: 90px 0;
+
+    background: #f8f7fc;
+
+    min-height: 500px;
+}
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.section-heading span {
+    color: #7c3aed;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    margin: 8px 0;
+
+    font-size: 36px;
+}
+
+.section-heading p {
+    color: #6b7280;
+}
+
+
+/* ================================
+   GRID
+================================ */
+
+.members-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+
+/* ================================
+   MEMBER CARD
+================================ */
+
+.member-card {
+    background: white;
+
+    border: 1px solid #eeeaf7;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    transition: .3s;
+
+    box-shadow:
+        0 8px 25px rgba(30,20,60,.04);
+}
+
+.member-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 35px rgba(30,20,60,.1);
+}
+
+
+/* FOTO / ICON */
+
+.member-photo {
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d28d9,
+            #9333ea
+        );
+
+    color: white;
+
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.member-card h3 {
+    margin-bottom: 6px;
+
+    color: #172033;
+
+    font-size: 20px;
+}
+
+.member-position {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    background: #f0eaff;
+
+    color: #6d28d9;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.member-phone {
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+.member-status {
+    margin-top: 14px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-active {
+    color: #16a34a;
+}
+
+.status-inactive {
+    color: #dc2626;
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
+.loading {
+    padding: 50px;
+
+    text-align: center;
+
+    color: #7c3aed;
+
+    font-size: 15px;
+}
+
+
+/* ================================
+   EMPTY
+================================ */
+
+.empty-message {
+    padding: 50px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    color: #6b7280;
+}
+
+
+/* ================================
+   ERROR
+================================ */
+
+.error-message {
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+
+    text-align: center;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer {
+    background: #171325;
+
+    color: white;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 60px;
+
+    padding: 65px 0;
+}
+
+.footer-brand p {
+    max-width: 350px;
+
+    margin-top: 18px;
+
+    color: #aaa4b8;
+
+    font-size: 14px;
+}
+
+.footer .brand-text strong {
+    color: white;
+}
+
+.footer .brand-text span {
+    color: #aaa4b8;
+}
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.footer-column h4 {
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    color: #aaa4b8;
+
+    font-size: 14px;
+
+    transition: .2s;
+}
+
+.footer-column a:hover {
+    color: #c4a6ff;
+}
+
+.footer-bottom {
+    padding: 20px 0;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+
+    color: #8f899e;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 950px) {
+
+    .nav-container {
+        flex-wrap: wrap;
+
+        padding: 14px 0;
+    }
+
+    .nav-menu {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .login-button {
+        display: none;
+    }
+
+    .members-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: calc(100% - 30px);
+    }
+
+    .nav-container {
+        width: calc(100% - 30px);
+    }
+
+    .brand {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .nav-menu {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        width: 100%;
+    }
+
+    .nav-menu a {
+        padding: 8px 4px;
+
+        font-size: 12px;
+
+        text-align: center;
+    }
+
+    .page-header {
+        padding: 60px 0;
+    }
+
+    .page-header h1 {
+        font-size: 38px;
+    }
+
+    .members-section {
+        padding: 65px 0;
+    }
+
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        padding: 50px 0;
+    }
+
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 400px) {
+
+    .nav-menu {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
