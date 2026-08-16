@@ -1,238 +1,244 @@
-// ========================================
-// FIREBASE
-// ========================================
+// =====================================================
+// KELOLA JADWAL
+// SAFINATUSSURUR
+// =====================================================
 
 import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    db,
+    auth
+} from "./firebase-config.js";
 
 import {
-    getFirestore,
     collection,
     getDocs,
     addDoc,
     updateDoc,
     deleteDoc,
-    doc
+    doc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import {
-    getAuth,
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-// ========================================
-// FIREBASE CONFIG
-// ========================================
-//
-// PENTING:
-// Gunakan CONFIG YANG SAMA PERSIS
-// dengan login.js kamu yang sudah berhasil.
-//
-// Jangan menggunakan "ISI_API_KEY".
-// Jangan membuat config baru.
-//
-
-const firebaseConfig = {
-    apiKey: "AIzaSyD0izNMCi-Ef52v_bW5WWeB4nxoaUrehG4",
-    authDomain: "safinatussurur.firebaseapp.com",
-    projectId: "safinatussurur",
-    storageBucket: "safinatussurur.firebasestorage.app",
-    messagingSenderId: "1065917297456",
-    appId: "1:1065917297456:web:27197bcdee49c226920ef5"
-};
-
-
-// ========================================
-// INITIALIZE FIREBASE
-// ========================================
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const auth = getAuth(app);
-
-
-// ========================================
+// =====================================================
 // COLLECTION
-// ========================================
+// =====================================================
 
-const jadwalCollection =
-    collection(db, "jadwal");
+const jadwalCollection = collection(db, "jadwal");
+
+const periodeCollection = collection(
+    db,
+    "periode_absensi"
+);
 
 
-// ========================================
+// =====================================================
 // ELEMENT
-// ========================================
+// =====================================================
 
 const tableBody =
-    document.getElementById(
-        "jadwal-table-body"
-    );
+    document.getElementById("jadwal-table-body");
 
 const searchInput =
-    document.getElementById(
-        "search-jadwal"
-    );
+    document.getElementById("search-jadwal");
 
 const tambahButton =
-    document.getElementById(
-        "tambah-jadwal-button"
-    );
+    document.getElementById("tambah-jadwal-button");
 
 const modal =
-    document.getElementById(
-        "jadwal-modal"
-    );
+    document.getElementById("jadwal-modal");
 
-const closeModal =
-    document.getElementById(
-        "close-modal"
-    );
+const closeModalButton =
+    document.getElementById("close-modal");
 
 const cancelButton =
-    document.getElementById(
-        "cancel-button"
-    );
+    document.getElementById("cancel-button");
 
 const form =
-    document.getElementById(
-        "jadwal-form"
-    );
+    document.getElementById("jadwal-form");
 
 const modalTitle =
-    document.getElementById(
-        "modal-title"
-    );
+    document.getElementById("modal-title");
 
-const jadwalId =
-    document.getElementById(
-        "jadwal-id"
-    );
+const jadwalIdInput =
+    document.getElementById("jadwal-id");
 
 const tanggalInput =
-    document.getElementById(
-        "tanggal"
-    );
+    document.getElementById("tanggal");
 
 const waktuInput =
-    document.getElementById(
-        "waktu"
-    );
+    document.getElementById("waktu");
 
 const acaraInput =
-    document.getElementById(
-        "acara"
-    );
+    document.getElementById("acara");
 
 const lokasiInput =
-    document.getElementById(
-        "lokasi"
-    );
+    document.getElementById("lokasi");
 
 const pengundangInput =
-    document.getElementById(
-        "pengundang"
-    );
+    document.getElementById("pengundang");
 
 const mapsInput =
-    document.getElementById(
-        "maps"
-    );
+    document.getElementById("maps");
 
 const whatsappInput =
-    document.getElementById(
-        "whatsapp"
-    );
+    document.getElementById("whatsapp");
+
+const periodeIdInput =
+    document.getElementById("periode-id");
+
+const periodeInfo =
+    document.getElementById("periode-info");
 
 const formMessage =
-    document.getElementById(
-        "form-message"
-    );
+    document.getElementById("form-message");
 
 const saveButton =
-    document.getElementById(
-        "save-button"
-    );
-
-const userEmail =
-    document.getElementById(
-        "user-email"
-    );
+    document.getElementById("save-button");
 
 const logoutButton =
-    document.getElementById(
-        "logout-button"
-    );
+    document.getElementById("logout-button");
+
+const userEmail =
+    document.getElementById("user-email");
 
 
-// ========================================
-// DATA LOKAL
-// ========================================
+// =====================================================
+// DATA GLOBAL
+// =====================================================
 
 let semuaJadwal = [];
 
+let semuaPeriode = [];
 
-// ========================================
-// LOGIN PROTECTION
-// ========================================
+let filterAktif = "semua";
+
+
+// =====================================================
+// CEK LOGIN
+// =====================================================
 
 onAuthStateChanged(
     auth,
-    (user) => {
+    async (user) => {
 
-        if (user) {
+        if (!user) {
 
-            console.log(
-                "Pengurus login:",
-                user.email
-            );
+            window.location.href = "login.html";
 
-
-            if (userEmail) {
-
-                userEmail.textContent =
-                    user.email ||
-                    "Pengurus";
-
-            }
+            return;
+        }
 
 
-            loadJadwal();
+        console.log(
+            "Pengurus login:",
+            user.email
+        );
+
+
+        if (userEmail) {
+
+            userEmail.textContent =
+                user.email || "-";
 
         }
 
-        else {
 
-            // Belum login
-            window.location.href =
-                "login.html";
+        await ambilPeriode();
 
-        }
+        await ambilJadwal();
 
     }
 );
 
 
-// ========================================
-// LOAD JADWAL
-// ========================================
+// =====================================================
+// AMBIL PERIODE
+// =====================================================
 
-async function loadJadwal() {
+async function ambilPeriode() {
 
     try {
 
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="8" class="loading">
-                    Memuat data jadwal...
-                </td>
-            </tr>
-        `;
+        const snapshot =
+            await getDocs(
+                periodeCollection
+            );
 
+
+        semuaPeriode = [];
+
+
+        snapshot.forEach(
+            (item) => {
+
+                semuaPeriode.push({
+
+                    id: item.id,
+
+                    ...item.data()
+
+                });
+
+            }
+        );
+
+
+        console.log(
+            "Semua periode:",
+            semuaPeriode
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Gagal mengambil periode:",
+            error
+        );
+
+        semuaPeriode = [];
+
+    }
+
+}
+
+
+// =====================================================
+// AMBIL JADWAL
+// =====================================================
+
+async function ambilJadwal() {
+
+    if (!tableBody) {
+        return;
+    }
+
+
+    tableBody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="10"
+                class="loading"
+            >
+
+                Memuat data jadwal...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    try {
 
         const snapshot =
             await getDocs(
@@ -244,14 +250,13 @@ async function loadJadwal() {
 
 
         snapshot.forEach(
-            (documentSnapshot) => {
+            (item) => {
 
                 semuaJadwal.push({
 
-                    id:
-                        documentSnapshot.id,
+                    id: item.id,
 
-                    ...documentSnapshot.data()
+                    ...item.data()
 
                 });
 
@@ -259,34 +264,35 @@ async function loadJadwal() {
         );
 
 
-        // Urutkan dari tanggal terbaru
-        // yang paling dekat terlebih dahulu
+        // =================================================
+        // URUTKAN BERDASARKAN TANGGAL DAN WAKTU
+        // =================================================
 
         semuaJadwal.sort(
             (a, b) => {
 
-                const tanggalA =
-                    new Date(
-                        `${a.Tanggal || ""}T${a.Waktu || "00:00"}`
-                    );
-
-                const tanggalB =
-                    new Date(
-                        `${b.Tanggal || ""}T${b.Waktu || "00:00"}`
-                    );
-
                 return (
-                    tanggalA - tanggalB
+                    buatTanggalJadwal(
+                        a.Tanggal,
+                        a.Waktu
+                    ) -
+                    buatTanggalJadwal(
+                        b.Tanggal,
+                        b.Waktu
+                    )
                 );
 
             }
         );
 
 
-        tampilkanJadwal(
+        console.log(
+            "Semua jadwal:",
             semuaJadwal
         );
 
+
+        tampilkanJadwal();
 
     }
 
@@ -299,13 +305,26 @@ async function loadJadwal() {
 
 
         tableBody.innerHTML = `
+
             <tr>
-                <td colspan="8" class="error">
-                    Gagal memuat data jadwal.
+
+                <td
+                    colspan="10"
+                    class="loading"
+                >
+
+                    ❌ Gagal memuat data jadwal.
+
                     <br>
-                    ${escapeHTML(error.message)}
+
+                    <small>
+                        ${escapeHTML(error.message)}
+                    </small>
+
                 </td>
+
             </tr>
+
         `;
 
     }
@@ -313,27 +332,248 @@ async function loadJadwal() {
 }
 
 
-// ========================================
-// TAMPILKAN JADWAL
-// ========================================
+// =====================================================
+// BUAT DATE JADWAL
+// =====================================================
 
-function tampilkanJadwal(
-    data
+function buatTanggalJadwal(
+    tanggal,
+    waktu
 ) {
 
-    tableBody.innerHTML = "";
+    if (!tanggal) {
+
+        return new Date(0);
+
+    }
+
+
+    const bagianTanggal =
+        String(tanggal).split("-");
+
+
+    const tahun =
+        Number(bagianTanggal[0]);
+
+    const bulan =
+        Number(bagianTanggal[1]) - 1;
+
+    const hari =
+        Number(bagianTanggal[2]);
+
+
+    let jam = 0;
+
+    let menit = 0;
+
+
+    if (waktu) {
+
+        const bagianWaktu =
+            String(waktu).split(":");
+
+
+        jam =
+            Number(
+                bagianWaktu[0] || 0
+            );
+
+
+        menit =
+            Number(
+                bagianWaktu[1] || 0
+            );
+
+    }
+
+
+    return new Date(
+        tahun,
+        bulan,
+        hari,
+        jam,
+        menit,
+        0,
+        0
+    );
+
+}
+
+
+// =====================================================
+// STATUS JADWAL
+// Selesai 5 jam setelah waktu kegiatan
+// =====================================================
+
+function getStatusJadwal(data) {
+
+    const waktuJadwal =
+        buatTanggalJadwal(
+            data.Tanggal,
+            data.Waktu
+        );
+
+
+    const waktuSelesai =
+        new Date(
+            waktuJadwal.getTime() +
+            (5 * 60 * 60 * 1000)
+        );
+
+
+    const sekarang =
+        new Date();
 
 
     if (
-        data.length === 0
+        sekarang >= waktuSelesai
+    ) {
+
+        return "selesai";
+
+    }
+
+
+    return "mendatang";
+
+}
+
+
+// =====================================================
+// TAMPILKAN JADWAL
+// =====================================================
+
+function tampilkanJadwal() {
+
+    if (!tableBody) {
+        return;
+    }
+
+
+    let dataTampil =
+        [...semuaJadwal];
+
+
+    // =================================================
+    // FILTER
+    // =================================================
+
+    if (
+        filterAktif === "mendatang"
+    ) {
+
+        dataTampil =
+            dataTampil.filter(
+                (jadwal) =>
+                    getStatusJadwal(jadwal)
+                    ===
+                    "mendatang"
+            );
+
+    }
+
+
+    if (
+        filterAktif === "selesai"
+    ) {
+
+        dataTampil =
+            dataTampil.filter(
+                (jadwal) =>
+                    getStatusJadwal(jadwal)
+                    ===
+                    "selesai"
+            );
+
+    }
+
+
+    // =================================================
+    // SEARCH
+    // =================================================
+
+    const keyword =
+        searchInput
+            ? searchInput.value
+                .trim()
+                .toLowerCase()
+            : "";
+
+
+    if (keyword) {
+
+        dataTampil =
+            dataTampil.filter(
+                (jadwal) => {
+
+                    const teks = `
+
+                        ${jadwal.Acara || ""}
+
+                        ${jadwal.Lokasi || ""}
+
+                        ${jadwal.Pengundang || ""}
+
+                        ${jadwal.Tanggal || ""}
+
+                        ${jadwal.Waktu || ""}
+
+                        ${jadwal.periodeNama || ""}
+
+                    `.toLowerCase();
+
+
+                    return teks.includes(
+                        keyword
+                    );
+
+                }
+            );
+
+    }
+
+
+    // =================================================
+    // JUMLAH JADWAL
+    // =================================================
+
+    const jumlahJadwal =
+        document.getElementById(
+            "jumlah-jadwal"
+        );
+
+
+    if (jumlahJadwal) {
+
+        jumlahJadwal.textContent =
+            `${dataTampil.length} kegiatan`;
+
+    }
+
+
+    // =================================================
+    // TIDAK ADA DATA
+    // =================================================
+
+    if (
+        dataTampil.length === 0
     ) {
 
         tableBody.innerHTML = `
+
             <tr>
-                <td colspan="8" class="empty">
-                    Belum ada data jadwal.
+
+                <td
+                    colspan="10"
+                    class="loading"
+                >
+
+                    ${pesanKosong()}
+
                 </td>
+
             </tr>
+
         `;
 
         return;
@@ -341,309 +581,636 @@ function tampilkanJadwal(
     }
 
 
-    data.forEach(
-        (jadwal, index) => {
+    // =================================================
+    // RENDER
+    // =================================================
 
-            const row =
-                document.createElement(
-                    "tr"
-                );
+    tableBody.innerHTML =
+        dataTampil
+            .map(
+                (jadwal, index) =>
+                    buatBarisJadwal(
+                        jadwal,
+                        index + 1
+                    )
+            )
+            .join("");
 
 
-            const tanggal =
-                formatTanggal(
-                    jadwal.Tanggal
-                );
+    pasangEventAksi();
 
+}
 
-            const waktu =
-                formatWaktu(
-                    jadwal.Waktu
-                );
 
+// =====================================================
+// PESAN KOSONG
+// =====================================================
 
-            const jadwalDate =
-                buatTanggal(
-                    jadwal.Tanggal,
-                    jadwal.Waktu
-                );
+function pesanKosong() {
 
+    if (
+        filterAktif === "mendatang"
+    ) {
 
-            const sekarang =
-                new Date();
+        return "📅 Belum ada jadwal mendatang.";
 
+    }
 
-            const tanggalClass =
-                jadwalDate &&
-                jadwalDate >= sekarang
-                    ? "date-upcoming"
-                    : "date-past";
 
+    if (
+        filterAktif === "selesai"
+    ) {
 
-            // ============================
-            // TOMBOL MAPS
-            // ============================
+        return "✓ Belum ada jadwal yang selesai.";
 
-            let mapsButton = "";
+    }
 
-            if (
-                jadwal.Maps &&
-                jadwal.Maps.trim() !== ""
-            ) {
 
-                mapsButton = `
-                    <a
-                        href="${escapeAttribute(jadwal.Maps)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn-small btn-maps"
-                    >
-                        📍 Maps
-                    </a>
-                `;
+    return "Belum ada data jadwal.";
 
-            }
+}
 
 
-            // ============================
-            // TOMBOL WHATSAPP
-            // ============================
+// =====================================================
+// BUAT BARIS JADWAL
+// =====================================================
 
-            let whatsappButton = "";
+function buatBarisJadwal(
+    jadwal,
+    nomor
+) {
 
-            if (
-                jadwal.WhatsApp &&
-                jadwal.WhatsApp.trim() !== ""
-            ) {
+    const status =
+        getStatusJadwal(jadwal);
 
-                const nomor =
-                    formatNomorWhatsApp(
-                        jadwal.WhatsApp
-                    );
 
+    // =================================================
+    // STATUS
+    // =================================================
 
-                whatsappButton = `
-                    <a
-                        href="https://wa.me/${nomor}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn-small btn-wa"
-                    >
-                        💬 WA
-                    </a>
-                `;
+    const statusHTML =
+        status === "selesai"
 
-            }
+            ? `
 
+                <span class="status selesai">
 
-            row.innerHTML = `
+                    ✓ Selesai
 
-                <td>
-                    ${index + 1}
-                </td>
+                </span>
 
+            `
 
-                <td class="${tanggalClass}">
+            : `
 
-                    ${tanggal}
+                <span class="status mendatang">
 
-                </td>
+                    ● Mendatang
 
-
-                <td>
-
-                    ${waktu}
-
-                </td>
-
-
-                <td>
-
-                    <strong>
-                        ${escapeHTML(
-                            jadwal.Acara || "-"
-                        )}
-                    </strong>
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-                        jadwal.Lokasi || "-"
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-                        jadwal.Pengundang || "-"
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    <div class="contact-buttons">
-
-                        ${mapsButton}
-
-                        ${whatsappButton}
-
-                    </div>
-
-                </td>
-
-
-                <td>
-
-                    <div class="action-buttons">
-
-                        <button
-                            class="btn-edit"
-                            data-id="${escapeAttribute(
-                                jadwal.id
-                            )}"
-                        >
-
-                            Edit
-
-                        </button>
-
-
-                        <button
-                            class="btn-delete"
-                            data-id="${escapeAttribute(
-                                jadwal.id
-                            )}"
-                        >
-
-                            Hapus
-
-                        </button>
-
-                    </div>
-
-                </td>
+                </span>
 
             `;
 
 
-            tableBody.appendChild(
-                row
+    // =================================================
+    // PERIODE
+    // =================================================
+
+    const periodeHTML =
+        jadwal.periodeNama
+
+            ? `
+
+                <small class="periode-jadwal">
+
+                    📋
+                    ${escapeHTML(
+                        jadwal.periodeNama
+                    )}
+
+                </small>
+
+            `
+
+            : `
+
+                <small class="periode-jadwal">
+
+                    Belum ada periode
+
+                </small>
+
+            `;
+
+
+    // =================================================
+    // WHATSAPP
+    // =================================================
+
+    const whatsappHTML =
+        jadwal.WhatsApp
+
+            ? `
+
+                <a
+                    href="https://wa.me/${nomorWhatsApp(
+                        jadwal.WhatsApp
+                    )}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    WhatsApp
+
+                </a>
+
+            `
+
+            : "-";
+
+
+    // =================================================
+    // RETURN BARIS
+    // =================================================
+
+    return `
+
+        <tr>
+
+
+            <!-- NO -->
+
+            <td>
+
+                ${nomor}
+
+            </td>
+
+
+            <!-- TANGGAL -->
+
+            <td>
+
+                <strong>
+
+                    ${escapeHTML(
+                        formatTanggal(
+                            jadwal.Tanggal
+                        )
+                    )}
+
+                </strong>
+
+            </td>
+
+
+            <!-- WAKTU -->
+
+            <td>
+
+                ${escapeHTML(
+                    jadwal.Waktu || "-"
+                )}
+
+                <small>
+
+                    WITA
+
+                </small>
+
+            </td>
+
+
+            <!-- ACARA -->
+
+            <td>
+
+                <strong>
+
+                    ${escapeHTML(
+                        jadwal.Acara ||
+                        "Kegiatan Habsyi"
+                    )}
+
+                </strong>
+
+            </td>
+
+
+            <!-- LOKASI -->
+
+            <td>
+
+                ${escapeHTML(
+                    jadwal.Lokasi || "-"
+                )}
+
+                ${
+                    jadwal.Maps
+                        ?
+                    `
+                        <br>
+
+                        <a
+                            href="${escapeHTML(
+                                jadwal.Maps
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            📍 Maps
+
+                        </a>
+                    `
+                        :
+                    ""
+                }
+
+            </td>
+
+
+            <!-- PENGUNDANG -->
+
+            <td>
+
+                ${escapeHTML(
+                    jadwal.Pengundang || "-"
+                )}
+
+            </td>
+
+
+            <!-- PERIODE ABSENSI -->
+
+            <td>
+
+                ${periodeHTML}
+
+            </td>
+
+
+            <!-- KONTAK -->
+
+            <td>
+
+                ${whatsappHTML}
+
+            </td>
+
+
+            <!-- STATUS -->
+
+            <td>
+
+                ${statusHTML}
+
+            </td>
+
+
+            <!-- AKSI -->
+
+            <td>
+
+                <div class="aksi-jadwal">
+
+
+                    <!-- ABSENSI -->
+
+                    <button
+                        type="button"
+                        class="btn-absensi"
+                        data-action="absensi"
+                        data-id="${escapeHTML(
+                            jadwal.id
+                        )}"
+                    >
+
+                        Absensi
+
+                    </button>
+
+
+                    <!-- EDIT -->
+
+                    <button
+                        type="button"
+                        class="btn-edit"
+                        data-action="edit"
+                        data-id="${escapeHTML(
+                            jadwal.id
+                        )}"
+                    >
+
+                        Edit
+
+                    </button>
+
+
+                    <!-- HAPUS -->
+
+                    <button
+                        type="button"
+                        class="btn-hapus"
+                        data-action="hapus"
+                        data-id="${escapeHTML(
+                            jadwal.id
+                        )}"
+                    >
+
+                        Hapus
+
+                    </button>
+
+
+                </div>
+
+            </td>
+
+
+        </tr>
+
+    `;
+
+}
+
+
+// =====================================================
+// EVENT AKSI
+// =====================================================
+
+function pasangEventAksi() {
+
+    const buttons =
+        tableBody.querySelectorAll(
+            "button[data-action]"
+        );
+
+
+    buttons.forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                async () => {
+
+                    const action =
+                        button.dataset.action;
+
+
+                    const id =
+                        button.dataset.id;
+
+
+                    console.log(
+                        "Aksi:",
+                        action,
+                        "ID:",
+                        id
+                    );
+
+
+                    // =================================
+                    // ABSENSI
+                    // =================================
+
+                    if (
+                        action === "absensi"
+                    ) {
+
+                        bukaHalamanAbsensi(
+                            id
+                        );
+
+                        return;
+
+                    }
+
+
+                    // =================================
+                    // EDIT
+                    // =================================
+
+                    if (
+                        action === "edit"
+                    ) {
+
+                        bukaEditJadwal(
+                            id
+                        );
+
+                        return;
+
+                    }
+
+
+                    // =================================
+                    // HAPUS
+                    // =================================
+
+                    if (
+                        action === "hapus"
+                    ) {
+
+                        await hapusJadwal(
+                            id
+                        );
+
+                    }
+
+                }
             );
 
         }
     );
 
+}
 
-    // ====================================
-    // EVENT EDIT
-    // ====================================
 
-    document
-        .querySelectorAll(
-            ".btn-edit"
-        )
-        .forEach(
-            (button) => {
+// =====================================================
+// BUKA HALAMAN ABSENSI
+// =====================================================
 
-                button.addEventListener(
-                    "click",
-                    () => {
+function bukaHalamanAbsensi(
+    jadwalId
+) {
 
-                        editJadwal(
-                            button.dataset.id
-                        );
+    if (!jadwalId) {
 
-                    }
-                );
-
-            }
+        alert(
+            "ID jadwal tidak ditemukan."
         );
 
+        return;
 
-    // ====================================
-    // EVENT HAPUS
-    // ====================================
+    }
 
-    document
-        .querySelectorAll(
-            ".btn-delete"
-        )
-        .forEach(
-            (button) => {
 
-                button.addEventListener(
-                    "click",
-                    () => {
+    const url =
+        `absensi.html?id=${encodeURIComponent(
+            jadwalId
+        )}`;
 
-                        hapusJadwal(
-                            button.dataset.id
-                        );
 
-                    }
-                );
+    console.log(
+        "Membuka absensi:",
+        url
+    );
 
-            }
-        );
+
+    window.location.href =
+        url;
 
 }
 
 
-// ========================================
-// TAMBAH JADWAL
-// ========================================
+// =====================================================
+// FILTER
+// =====================================================
 
-tambahButton.addEventListener(
-    "click",
-    bukaModalTambah
+const filterButtons =
+    document.querySelectorAll(
+        "[data-filter]"
+    );
+
+
+filterButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                filterButtons.forEach(
+                    (btn) => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                filterAktif =
+                    button.dataset.filter;
+
+
+                tampilkanJadwal();
+
+            }
+        );
+
+    }
 );
 
 
-// ========================================
-// MODAL TAMBAH
-// ========================================
+// =====================================================
+// SEARCH
+// =====================================================
 
-function bukaModalTambah() {
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            tampilkanJadwal();
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// TAMBAH JADWAL
+// =====================================================
+
+if (tambahButton) {
+
+    tambahButton.addEventListener(
+        "click",
+        bukaTambahJadwal
+    );
+
+}
+
+
+// =====================================================
+// BUKA TAMBAH
+// =====================================================
+
+function bukaTambahJadwal() {
+
+    form.reset();
+
+
+    jadwalIdInput.value =
+        "";
+
 
     modalTitle.textContent =
         "Tambah Jadwal";
 
 
-    jadwalId.value = "";
+    formMessage.textContent =
+        "";
 
 
-    form.reset();
+    formMessage.className =
+        "form-message";
 
 
-    formMessage.textContent = "";
+    if (periodeInfo) {
+
+        periodeInfo.innerHTML = `
+
+            <div class="periode-loading">
+
+                📋 Pilih tanggal kegiatan terlebih dahulu.
+
+            </div>
+
+        `;
+
+    }
 
 
-    saveButton.textContent =
-        "Simpan";
+    if (periodeIdInput) {
+
+        periodeIdInput.value =
+            "";
+
+    }
 
 
     modal.classList.add(
         "show"
     );
 
+
+    tanggalInput.focus();
+
 }
 
 
-// ========================================
-// EDIT JADWAL
-// ========================================
+// =====================================================
+// BUKA EDIT
+// =====================================================
 
-function editJadwal(id) {
+function bukaEditJadwal(
+    id
+) {
 
     const jadwal =
         semuaJadwal.find(
-            item =>
+            (item) =>
                 item.id === id
         );
 
@@ -659,11 +1226,7 @@ function editJadwal(id) {
     }
 
 
-    modalTitle.textContent =
-        "Edit Jadwal";
-
-
-    jadwalId.value =
+    jadwalIdInput.value =
         jadwal.id;
 
 
@@ -695,217 +1258,590 @@ function editJadwal(id) {
         jadwal.WhatsApp || "";
 
 
-    formMessage.textContent = "";
+    modalTitle.textContent =
+        "Edit Jadwal";
 
 
-    saveButton.textContent =
-        "Simpan Perubahan";
+    formMessage.textContent =
+        "";
+
+
+    formMessage.className =
+        "form-message";
+
+
+    tampilkanInfoPeriode(
+        jadwal.Tanggal
+    );
 
 
     modal.classList.add(
         "show"
     );
 
+
+    tanggalInput.focus();
+
 }
 
 
-// ========================================
-// SIMPAN
-// ========================================
+// =====================================================
+// TUTUP MODAL
+// =====================================================
 
-form.addEventListener(
-    "submit",
-    async (event) => {
+function tutupModal() {
 
-        event.preventDefault();
+    if (!modal) {
+        return;
+    }
 
 
-        const tanggal =
-            tanggalInput.value;
+    modal.classList.remove(
+        "show"
+    );
 
 
-        const waktu =
-            waktuInput.value;
+    form.reset();
 
 
-        const acara =
-            acaraInput.value.trim();
+    jadwalIdInput.value =
+        "";
 
 
-        const lokasi =
-            lokasiInput.value.trim();
+    if (periodeIdInput) {
 
-
-        const pengundang =
-            pengundangInput.value.trim();
-
-
-        const maps =
-            mapsInput.value.trim();
-
-
-        const whatsapp =
-            whatsappInput.value.trim();
-
-
-        if (
-            !tanggal ||
-            !waktu ||
-            !acara ||
-            !lokasi ||
-            !pengundang
-        ) {
-
-            formMessage.textContent =
-                "Tanggal, waktu, acara, lokasi, dan pengundang wajib diisi.";
-
-            formMessage.style.color =
-                "#d92d20";
-
-            return;
-
-        }
-
-
-        try {
-
-            saveButton.disabled =
-                true;
-
-
-            saveButton.textContent =
-                "Menyimpan...";
-
-
-            const dataJadwal = {
-
-                Tanggal:
-                    tanggal,
-
-                Waktu:
-                    waktu,
-
-                Acara:
-                    acara,
-
-                Lokasi:
-                    lokasi,
-
-                Pengundang:
-                    pengundang,
-
-                Maps:
-                    maps,
-
-                WhatsApp:
-                    whatsapp
-
-            };
-
-
-            // =================================
-            // TAMBAH
-            // =================================
-
-            if (
-                !jadwalId.value
-            ) {
-
-                await addDoc(
-                    jadwalCollection,
-                    dataJadwal
-                );
-
-
-                formMessage.textContent =
-                    "Jadwal berhasil ditambahkan.";
-
-            }
-
-
-            // =================================
-            // EDIT
-            // =================================
-
-            else {
-
-                const jadwalRef =
-                    doc(
-                        db,
-                        "jadwal",
-                        jadwalId.value
-                    );
-
-
-                await updateDoc(
-                    jadwalRef,
-                    dataJadwal
-                );
-
-
-                formMessage.textContent =
-                    "Jadwal berhasil diperbarui.";
-
-            }
-
-
-            formMessage.style.color =
-                "#16803c";
-
-
-            await new Promise(
-                resolve =>
-                    setTimeout(
-                        resolve,
-                        500
-                    )
-            );
-
-
-            tutupModal();
-
-
-            await loadJadwal();
-
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Gagal menyimpan jadwal:",
-                error
-            );
-
-
-            formMessage.textContent =
-                "Gagal menyimpan: " +
-                error.message;
-
-
-            formMessage.style.color =
-                "#d92d20";
-
-        }
-
-        finally {
-
-            saveButton.disabled =
-                false;
-
-
-            saveButton.textContent =
-                "Simpan";
-
-        }
+        periodeIdInput.value =
+            "";
 
     }
-);
 
 
-// ========================================
-// HAPUS
-// ========================================
+    if (periodeInfo) {
+
+        periodeInfo.innerHTML = `
+
+            <div class="periode-loading">
+
+                📋 Pilih tanggal kegiatan terlebih dahulu.
+
+            </div>
+
+        `;
+
+    }
+
+
+    formMessage.textContent =
+        "";
+
+
+    formMessage.className =
+        "form-message";
+
+}
+
+
+if (closeModalButton) {
+
+    closeModalButton.addEventListener(
+        "click",
+        tutupModal
+    );
+
+}
+
+
+if (cancelButton) {
+
+    cancelButton.addEventListener(
+        "click",
+        tutupModal
+    );
+
+}
+
+
+if (modal) {
+
+    modal.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target === modal
+            ) {
+
+                tutupModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// PERIODE BERDASARKAN TANGGAL
+// =====================================================
+
+function cariPeriodeUntukTanggal(
+    tanggal
+) {
+
+    if (!tanggal) {
+
+        return null;
+
+    }
+
+
+    const hasil =
+        semuaPeriode.find(
+            (periode) => {
+
+                if (
+                    !periode.tanggalMulai ||
+                    !periode.tanggalSelesai
+                ) {
+
+                    return false;
+
+                }
+
+
+                return (
+                    tanggal >=
+                    periode.tanggalMulai
+                )
+                &&
+                (
+                    tanggal <=
+                    periode.tanggalSelesai
+                );
+
+            }
+        );
+
+
+    return hasil || null;
+
+}
+
+
+// =====================================================
+// TAMPILKAN INFO PERIODE
+// =====================================================
+
+function tampilkanInfoPeriode(
+    tanggal
+) {
+
+    if (!periodeInfo) {
+        return;
+    }
+
+
+    if (!tanggal) {
+
+        periodeInfo.innerHTML = `
+
+            <div class="periode-loading">
+
+                📋 Pilih tanggal kegiatan terlebih dahulu.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const periode =
+        cariPeriodeUntukTanggal(
+            tanggal
+        );
+
+
+    if (!periode) {
+
+        periodeInfo.innerHTML = `
+
+            <div class="periode-loading">
+
+                ⚠️ Tidak ada periode absensi
+                untuk tanggal ini.
+
+            </div>
+
+        `;
+
+
+        if (periodeIdInput) {
+
+            periodeIdInput.value =
+                "";
+
+        }
+
+
+        return;
+
+    }
+
+
+    if (periodeIdInput) {
+
+        periodeIdInput.value =
+            periode.id;
+
+    }
+
+
+    periodeInfo.innerHTML = `
+
+        <div class="periode-success">
+
+            📋
+
+            <strong>
+
+                ${escapeHTML(
+                    periode.nama || "Periode Absensi"
+                )}
+
+            </strong>
+
+            <br>
+
+            <small>
+
+                ${escapeHTML(
+                    periode.tanggalMulai || "-"
+                )}
+
+                s/d
+
+                ${escapeHTML(
+                    periode.tanggalSelesai || "-"
+                )}
+
+            </small>
+
+        </div>
+
+    `;
+
+}
+
+
+// =====================================================
+// SAAT TANGGAL BERUBAH
+// =====================================================
+
+if (tanggalInput) {
+
+    tanggalInput.addEventListener(
+        "change",
+        () => {
+
+            tampilkanInfoPeriode(
+                tanggalInput.value
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// SUBMIT FORM
+// =====================================================
+
+if (form) {
+
+    form.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+            await simpanJadwal();
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// SIMPAN JADWAL
+// =====================================================
+
+async function simpanJadwal() {
+
+    const id =
+        jadwalIdInput.value.trim();
+
+
+    const tanggal =
+        tanggalInput.value;
+
+
+    const waktu =
+        waktuInput.value;
+
+
+    const acara =
+        acaraInput.value.trim();
+
+
+    const lokasi =
+        lokasiInput.value.trim();
+
+
+    const pengundang =
+        pengundangInput.value.trim();
+
+
+    const maps =
+        mapsInput.value.trim();
+
+
+    const whatsapp =
+        whatsappInput.value.trim();
+
+
+    // =================================================
+    // VALIDASI
+    // =================================================
+
+    if (!tanggal) {
+
+        tampilkanPesan(
+            "Tanggal wajib diisi.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!waktu) {
+
+        tampilkanPesan(
+            "Waktu wajib diisi.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!acara) {
+
+        tampilkanPesan(
+            "Nama acara wajib diisi.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!lokasi) {
+
+        tampilkanPesan(
+            "Lokasi wajib diisi.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!pengundang) {
+
+        tampilkanPesan(
+            "Pengundang wajib diisi.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    // =================================================
+    // CARI PERIODE
+    // =================================================
+
+    const periode =
+        cariPeriodeUntukTanggal(
+            tanggal
+        );
+
+
+    // =================================================
+    // DATA
+    // =================================================
+
+    const dataJadwal = {
+
+        Tanggal:
+            tanggal,
+
+        Waktu:
+            waktu,
+
+        Acara:
+            acara,
+
+        Lokasi:
+            lokasi,
+
+        Pengundang:
+            pengundang,
+
+        Maps:
+            maps,
+
+        WhatsApp:
+            whatsapp,
+
+        periodeId:
+            periode
+                ? periode.id
+                : "",
+
+        periodeNama:
+            periode
+                ? periode.nama
+                : "",
+
+        updatedAt:
+            serverTimestamp()
+
+    };
+
+
+    saveButton.disabled =
+        true;
+
+
+    saveButton.textContent =
+        "Menyimpan...";
+
+
+    try {
+
+        // =================================================
+        // EDIT
+        // =================================================
+
+        if (id) {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "jadwal",
+                    id
+                ),
+                dataJadwal
+            );
+
+
+            tampilkanPesan(
+                "Jadwal berhasil diperbarui.",
+                "success"
+            );
+
+        }
+
+        // =================================================
+        // TAMBAH
+        // =================================================
+
+        else {
+
+            await addDoc(
+                jadwalCollection,
+                {
+
+                    ...dataJadwal,
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            tampilkanPesan(
+                "Jadwal berhasil ditambahkan.",
+                "success"
+            );
+
+        }
+
+
+        // =================================================
+        // REFRESH
+        // =================================================
+
+        await ambilJadwal();
+
+
+        setTimeout(
+            () => {
+
+                tutupModal();
+
+            },
+            700
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Gagal menyimpan:",
+            error
+        );
+
+
+        tampilkanPesan(
+            "Gagal menyimpan jadwal.",
+            "error"
+        );
+
+    }
+
+    finally {
+
+        saveButton.disabled =
+            false;
+
+
+        saveButton.textContent =
+            "Simpan";
+
+    }
+
+}
+
+
+// =====================================================
+// HAPUS JADWAL
+// =====================================================
 
 async function hapusJadwal(
     id
@@ -913,7 +1849,7 @@ async function hapusJadwal(
 
     const jadwal =
         semuaJadwal.find(
-            item =>
+            (item) =>
                 item.id === id
         );
 
@@ -925,7 +1861,7 @@ async function hapusJadwal(
 
     const konfirmasi =
         confirm(
-            `Apakah kamu yakin ingin menghapus jadwal "${jadwal.Acara}"?`
+            `Hapus jadwal "${jadwal.Acara || "Kegiatan"}"?`
         );
 
 
@@ -936,25 +1872,21 @@ async function hapusJadwal(
 
     try {
 
-        const jadwalRef =
+        await deleteDoc(
             doc(
                 db,
                 "jadwal",
                 id
-            );
-
-
-        await deleteDoc(
-            jadwalRef
+            )
         );
+
+
+        await ambilJadwal();
 
 
         alert(
             "Jadwal berhasil dihapus."
         );
-
-
-        await loadJadwal();
 
     }
 
@@ -967,8 +1899,7 @@ async function hapusJadwal(
 
 
         alert(
-            "Gagal menghapus jadwal: " +
-            error.message
+            "Gagal menghapus jadwal."
         );
 
     }
@@ -976,328 +1907,106 @@ async function hapusJadwal(
 }
 
 
-// ========================================
-// SEARCH
-// ========================================
+// =====================================================
+// PESAN
+// =====================================================
 
-searchInput.addEventListener(
-    "input",
-    () => {
+function tampilkanPesan(
+    pesan,
+    tipe
+) {
 
-        const keyword =
-            searchInput.value
-                .toLowerCase()
-                .trim();
-
-
-        if (!keyword) {
-
-            tampilkanJadwal(
-                semuaJadwal
-            );
-
-            return;
-
-        }
-
-
-        const hasil =
-            semuaJadwal.filter(
-                (jadwal) => {
-
-                    const acara =
-                        (
-                            jadwal.Acara ||
-                            ""
-                        ).toLowerCase();
-
-
-                    const lokasi =
-                        (
-                            jadwal.Lokasi ||
-                            ""
-                        ).toLowerCase();
-
-
-                    const pengundang =
-                        (
-                            jadwal.Pengundang ||
-                            ""
-                        ).toLowerCase();
-
-
-                    const tanggal =
-                        (
-                            jadwal.Tanggal ||
-                            ""
-                        ).toLowerCase();
-
-
-                    return (
-
-                        acara.includes(
-                            keyword
-                        ) ||
-
-                        lokasi.includes(
-                            keyword
-                        ) ||
-
-                        pengundang.includes(
-                            keyword
-                        ) ||
-
-                        tanggal.includes(
-                            keyword
-                        )
-
-                    );
-
-                }
-            );
-
-
-        tampilkanJadwal(
-            hasil
-        );
-
+    if (!formMessage) {
+        return;
     }
-);
 
 
-// ========================================
-// TUTUP MODAL
-// ========================================
-
-closeModal.addEventListener(
-    "click",
-    tutupModal
-);
+    formMessage.textContent =
+        pesan;
 
 
-cancelButton.addEventListener(
-    "click",
-    tutupModal
-);
+    formMessage.className =
+        "form-message";
 
 
-function tutupModal() {
-
-    modal.classList.remove(
-        "show"
+    formMessage.classList.add(
+        tipe
     );
 
-
-    form.reset();
-
-
-    jadwalId.value = "";
-
-
-    formMessage.textContent = "";
-
-
-    saveButton.disabled =
-        false;
-
-
-    saveButton.textContent =
-        "Simpan";
-
 }
 
 
-// ========================================
-// KLIK DI LUAR MODAL
-// ========================================
-
-modal.addEventListener(
-    "click",
-    (event) => {
-
-        if (
-            event.target === modal
-        ) {
-
-            tutupModal();
-
-        }
-
-    }
-);
-
-
-// ========================================
-// LOGOUT
-// ========================================
-
-logoutButton.addEventListener(
-    "click",
-    async () => {
-
-        const konfirmasi =
-            confirm(
-                "Apakah kamu yakin ingin logout?"
-            );
-
-
-        if (!konfirmasi) {
-            return;
-        }
-
-
-        try {
-
-            await signOut(
-                auth
-            );
-
-
-            window.location.href =
-                "login.html";
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Logout gagal:",
-                error
-            );
-
-
-            alert(
-                "Logout gagal: " +
-                error.message
-            );
-
-        }
-
-    }
-);
-
-
-// ========================================
+// =====================================================
 // FORMAT TANGGAL
-// ========================================
+// =====================================================
 
 function formatTanggal(
     tanggal
 ) {
 
     if (!tanggal) {
+
         return "-";
+
     }
 
 
-    const parts =
-        tanggal.split("-");
+    const bagian =
+        String(tanggal).split("-");
 
 
     if (
-        parts.length !== 3
+        bagian.length !== 3
     ) {
 
-        return escapeHTML(
-            tanggal
-        );
+        return tanggal;
 
     }
-
-
-    const tahun =
-        parts[0];
-
-    const bulan =
-        parts[1];
-
-    const hari =
-        parts[2];
-
-
-    return `${hari}/${bulan}/${tahun}`;
-
-}
-
-
-// ========================================
-// FORMAT WAKTU
-// ========================================
-
-function formatWaktu(
-    waktu
-) {
-
-    if (!waktu) {
-        return "-";
-    }
-
-
-    return `${waktu} WITA`;
-
-}
-
-
-// ========================================
-// BUAT OBJEK DATE
-// ========================================
-
-function buatTanggal(
-    tanggal,
-    waktu
-) {
-
-    if (!tanggal) {
-        return null;
-    }
-
-
-    const nilai =
-        `${tanggal}T${waktu || "00:00"}:00`;
 
 
     const hasil =
-        new Date(nilai);
+        new Date(
+            Number(bagian[0]),
+            Number(bagian[1]) - 1,
+            Number(bagian[2])
+        );
 
 
-    if (
-        Number.isNaN(
-            hasil.getTime()
-        )
-    ) {
+    return hasil.toLocaleDateString(
+        "id-ID",
+        {
 
-        return null;
+            day: "numeric",
 
-    }
+            month: "long",
 
+            year: "numeric"
 
-    return hasil;
+        }
+    );
 
 }
 
 
-// ========================================
-// FORMAT WHATSAPP
-// ========================================
+// =====================================================
+// NOMOR WHATSAPP
+// =====================================================
 
-function formatNomorWhatsApp(
+function nomorWhatsApp(
     nomor
 ) {
 
     let hasil =
-        String(nomor)
-            .replace(
-                /\D/g,
-                ""
-            );
+        String(
+            nomor || ""
+        ).replace(
+            /\D/g,
+            ""
+        );
 
-
-    // 08xxxxxxxx
-    // menjadi
-    // 628xxxxxxxx
 
     if (
-        hasil.startsWith("08")
+        hasil.startsWith("0")
     ) {
 
         hasil =
@@ -1307,32 +2016,22 @@ function formatNomorWhatsApp(
     }
 
 
-    // Jika diawali 8
-    if (
-        hasil.startsWith("8")
-    ) {
-
-        hasil =
-            "62" +
-            hasil;
-
-    }
-
-
     return hasil;
 
 }
 
 
-// ========================================
-// SECURITY HTML
-// ========================================
+// =====================================================
+// ESCAPE HTML
+// =====================================================
 
 function escapeHTML(
     value
 ) {
 
-    return String(value)
+    return String(
+        value ?? ""
+    )
 
         .replaceAll(
             "&",
@@ -1362,34 +2061,61 @@ function escapeHTML(
 }
 
 
-// ========================================
-// SECURITY ATTRIBUTE
-// ========================================
+// =====================================================
+// LOGOUT
+// =====================================================
 
-function escapeAttribute(
-    value
-) {
+if (logoutButton) {
 
-    return String(value)
+    logoutButton.addEventListener(
+        "click",
+        async () => {
 
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
+            try {
 
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
+                await signOut(auth);
 
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
 
-        .replaceAll(
-            ">",
-            "&gt;"
-        );
+                window.location.href =
+                    "login.html";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Logout gagal:",
+                    error
+                );
+
+
+                alert(
+                    "Logout gagal."
+                );
+
+            }
+
+        }
+    );
 
 }
+
+
+// =====================================================
+// AUTO UPDATE STATUS
+// =====================================================
+
+setInterval(
+    () => {
+
+        if (
+            semuaJadwal.length > 0
+        ) {
+
+            tampilkanJadwal();
+
+        }
+
+    },
+    60 * 1000
+);
