@@ -1,6 +1,6 @@
 // ==========================================
 // JADWAL.JS
-// Sistem Informasi Habsyi Safinatussurur
+// SISTEM INFORMASI HABSYI SAFINATUSSURUR
 // ==========================================
 
 import { db } from "./firebase-config.js";
@@ -27,11 +27,6 @@ const jadwalEmpty =
 const jumlahJadwal =
     document.getElementById("jumlah-jadwal");
 
-
-// ==========================================
-// FILTER BUTTON
-// ==========================================
-
 const filterButtons =
     document.querySelectorAll(".filter-btn");
 
@@ -40,15 +35,13 @@ const filterButtons =
 // DATA GLOBAL
 // ==========================================
 
-// Menyimpan SELURUH jadwal dari Firebase
 let semuaJadwal = [];
 
-// Filter yang sedang aktif
-let filterAktif = "semua";
+let filterAktif = "mendatang";
 
 
 // ==========================================
-// TANGGAL HARI INI
+// HARI INI
 // ==========================================
 
 function getHariIni() {
@@ -65,54 +58,130 @@ function getHariIni() {
 
 
 // ==========================================
-// PARSE TANGGAL FIREBASE
+// PARSE TANGGAL
 // ==========================================
 
-function parseTanggal(tanggalString) {
+function parseTanggal(tanggal) {
 
-    if (!tanggalString) {
+    if (!tanggal) {
         return null;
     }
 
 
-    /*
-     * Firebase:
-     *
-     * 2026-08-11
-     *
-     * Kita pecah manual supaya
-     * tidak terkena masalah timezone.
-     */
+    // ======================================
+    // JIKA FIRESTORE TIMESTAMP
+    // ======================================
 
-    const bagian =
-        String(tanggalString).split("-");
+    if (
+        typeof tanggal === "object" &&
+        typeof tanggal.toDate === "function"
+    ) {
 
+        const hasil = tanggal.toDate();
 
-    if (bagian.length !== 3) {
-        return null;
-    }
-
-
-    const tahun =
-        Number(bagian[0]);
-
-    const bulan =
-        Number(bagian[1]) - 1;
-
-    const tanggal =
-        Number(bagian[2]);
-
-
-    const hasil =
-        new Date(
-            tahun,
-            bulan,
-            tanggal
+        hasil.setHours(
+            0,
+            0,
+            0,
+            0
         );
 
+        return hasil;
 
-    if (isNaN(hasil.getTime())) {
+    }
+
+
+    // ======================================
+    // JIKA DATE OBJECT
+    // ======================================
+
+    if (tanggal instanceof Date) {
+
+        const hasil =
+            new Date(tanggal);
+
+        hasil.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+        return hasil;
+
+    }
+
+
+    // ======================================
+    // FORMAT YYYY-MM-DD
+    // ======================================
+
+    const teks =
+        String(tanggal).trim();
+
+
+    const bagian =
+        teks.split("-");
+
+
+    if (
+        bagian.length === 3
+    ) {
+
+        const tahun =
+            Number(bagian[0]);
+
+        const bulan =
+            Number(bagian[1]) - 1;
+
+        const hari =
+            Number(bagian[2]);
+
+
+        const hasil =
+            new Date(
+                tahun,
+                bulan,
+                hari
+            );
+
+
+        if (
+            !isNaN(
+                hasil.getTime()
+            )
+        ) {
+
+            hasil.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+            return hasil;
+
+        }
+
+    }
+
+
+    // ======================================
+    // FORMAT TANGGAL LAIN
+    // ======================================
+
+    const hasil =
+        new Date(teks);
+
+
+    if (
+        isNaN(
+            hasil.getTime()
+        )
+    ) {
+
         return null;
+
     }
 
 
@@ -125,16 +194,54 @@ function parseTanggal(tanggalString) {
 
 
     return hasil;
+
 }
 
 
 // ==========================================
-// LOAD JADWAL
+// LOAD JADWAL FIREBASE
 // ==========================================
 
 async function loadJadwal() {
 
     try {
+
+        console.log(
+            "Memulai mengambil data jadwal..."
+        );
+
+
+        // ==================================
+        // TAMPILKAN LOADING
+        // ==================================
+
+        if (jadwalLoading) {
+
+            jadwalLoading.style.display =
+                "block";
+
+        }
+
+
+        if (jadwalEmpty) {
+
+            jadwalEmpty.style.display =
+                "none";
+
+        }
+
+
+        if (jadwalContainer) {
+
+            jadwalContainer.innerHTML =
+                "";
+
+        }
+
+
+        // ==================================
+        // AMBIL COLLECTION JADWAL
+        // ==================================
 
         const snapshot =
             await getDocs(
@@ -145,78 +252,146 @@ async function loadJadwal() {
             );
 
 
-        // ==================================
-        // HARI INI
-        // ==================================
+        console.log(
+            "Jumlah dokumen jadwal:",
+            snapshot.size
+        );
 
-        const hariIni =
-            getHariIni();
-
-
-        // ==================================
-        // AMBIL SEMUA DATA
-        // ==================================
 
         semuaJadwal = [];
 
 
-        snapshot.forEach((doc) => {
+        // ==================================
+        // BACA SETIAP DOKUMEN
+        // ==================================
 
-            const data =
-                doc.data();
+        snapshot.forEach(
+            (documentSnapshot) => {
+
+                const data =
+                    documentSnapshot.data();
 
 
-            if (!data.Tanggal) {
-                return;
-            }
-
-
-            const tanggal =
-                parseTanggal(
-                    data.Tanggal
+                console.log(
+                    "Data jadwal:",
+                    documentSnapshot.id,
+                    data
                 );
 
 
-            if (!tanggal) {
-                return;
+                // ==================================
+                // FIELD TANGGAL
+                // ==================================
+
+                const tanggalValue =
+                    data.Tanggal ||
+                    data.tanggal ||
+                    data.tanggalKegiatan;
+
+
+                if (!tanggalValue) {
+
+                    console.warn(
+                        "Jadwal tidak memiliki tanggal:",
+                        documentSnapshot.id
+                    );
+
+                    return;
+
+                }
+
+
+                const tanggal =
+                    parseTanggal(
+                        tanggalValue
+                    );
+
+
+                if (!tanggal) {
+
+                    console.warn(
+                        "Format tanggal tidak valid:",
+                        tanggalValue
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // MASUKKAN DATA
+                // ==================================
+
+                semuaJadwal.push({
+
+                    id:
+                        documentSnapshot.id,
+
+                    ...data,
+
+                    tanggalDate:
+                        tanggal
+
+                });
+
             }
-
-
-            semuaJadwal.push({
-
-                id: doc.id,
-
-                ...data,
-
-                tanggalDate:
-                    tanggal
-
-            });
-
-        });
-
-
-        // ==================================
-        // URUTKAN SEMUA DATA
-        // ==================================
-
-        semuaJadwal.sort(
-            (a, b) =>
-                a.tanggalDate -
-                b.tanggalDate
         );
 
 
         // ==================================
-        // HILANGKAN LOADING
+        // URUTKAN BERDASARKAN TANGGAL
         // ==================================
 
-        jadwalLoading.style.display =
-            "none";
+        semuaJadwal.sort(
+            (a, b) => {
+
+                return (
+                    a.tanggalDate -
+                    b.tanggalDate
+                );
+
+            }
+        );
+
+
+        console.log(
+            "Semua jadwal berhasil dibaca:",
+            semuaJadwal
+        );
 
 
         // ==================================
-        // TAMPILKAN FILTER AWAL
+        // SEMBUNYIKAN LOADING
+        // ==================================
+
+        if (jadwalLoading) {
+
+            jadwalLoading.style.display =
+                "none";
+
+        }
+
+
+        // ==================================
+        // JIKA TIDAK ADA DATA
+        // ==================================
+
+        if (
+            semuaJadwal.length === 0
+        ) {
+
+            tampilkanKosong(
+                "semua"
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // TAMPILKAN JADWAL MENDATANG
         // ==================================
 
         renderJadwal(
@@ -224,65 +399,9 @@ async function loadJadwal() {
         );
 
 
-        // ==================================
-        // AKTIFKAN FILTER
-        // ==================================
+    }
 
-        filterButtons.forEach(
-            (button) => {
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        const filter =
-                            button.dataset.filter;
-
-
-                        // ----------------------
-                        // BUTTON ACTIVE
-                        // ----------------------
-
-                        filterButtons.forEach(
-                            (btn) => {
-
-                                btn.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                        button.classList.add(
-                            "active"
-                        );
-
-
-                        // ----------------------
-                        // SIMPAN FILTER
-                        // ----------------------
-
-                        filterAktif =
-                            filter;
-
-
-                        // ----------------------
-                        // RENDER
-                        // ----------------------
-
-                        renderJadwal(
-                            filter
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-    } catch (error) {
+    catch (error) {
 
         console.error(
             "Gagal mengambil data jadwal:",
@@ -290,21 +409,103 @@ async function loadJadwal() {
         );
 
 
-        jadwalLoading.innerHTML = `
+        if (jadwalLoading) {
 
-            <p>
-                ❌ Gagal memuat jadwal.
-            </p>
+            jadwalLoading.style.display =
+                "none";
 
-            <small>
-                Silakan refresh halaman.
-            </small>
+        }
 
-        `;
+
+        if (jadwalContainer) {
+
+            jadwalContainer.innerHTML = `
+
+                <div class="error-jadwal">
+
+                    <h3>
+                        ❌ Gagal Memuat Jadwal
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            error.message
+                        )}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
 
     }
 
 }
+
+
+// ==========================================
+// FILTER
+// ==========================================
+
+filterButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const filter =
+                    button.dataset.filter;
+
+
+                console.log(
+                    "Filter dipilih:",
+                    filter
+                );
+
+
+                // ==============================
+                // BUTTON ACTIVE
+                // ==============================
+
+                filterButtons.forEach(
+                    (btn) => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                // ==============================
+                // SIMPAN FILTER
+                // ==============================
+
+                filterAktif =
+                    filter;
+
+
+                // ==============================
+                // RENDER
+                // ==============================
+
+                renderJadwal(
+                    filter
+                );
+
+            }
+        );
+
+    }
+);
 
 
 // ==========================================
@@ -313,64 +514,78 @@ async function loadJadwal() {
 
 function renderJadwal(filter) {
 
-    // ======================================
-    // BERSIHKAN CONTAINER
-    // ======================================
-
-    jadwalContainer.innerHTML = "";
+    if (!jadwalContainer) {
+        return;
+    }
 
 
-    // ======================================
-    // HARI INI
-    // ======================================
+    jadwalContainer.innerHTML =
+        "";
+
 
     const hariIni =
         getHariIni();
 
 
+    let dataTampil =
+        [];
+
+
     // ======================================
-    // FILTER DATA
+    // SEMUA
     // ======================================
 
-    let dataTampil = [];
+    if (
+        filter === "semua"
+    ) {
 
-
-    if (filter === "semua") {
-
-        // Semua jadwal
         dataTampil =
             [...semuaJadwal];
 
     }
 
 
+    // ======================================
+    // MENDATANG
+    // ======================================
+
     else if (
         filter === "mendatang"
     ) {
 
-        // Hari ini + jadwal berikutnya
-
         dataTampil =
             semuaJadwal.filter(
-                (data) =>
-                    data.tanggalDate >=
-                    hariIni
+                (jadwal) => {
+
+                    return (
+                        jadwal.tanggalDate >=
+                        hariIni
+                    );
+
+                }
             );
 
     }
 
 
+    // ======================================
+    // SELESAI
+    // ======================================
+
     else if (
         filter === "selesai"
     ) {
 
-        // Jadwal sebelum hari ini
-
         dataTampil =
             semuaJadwal.filter(
-                (data) =>
-                    data.tanggalDate <
-                    hariIni
+                (jadwal) => {
+
+                    return (
+                        jadwal.tanggalDate <
+                        hariIni
+                    );
+
+                }
             );
 
     }
@@ -384,139 +599,83 @@ function renderJadwal(filter) {
         filter === "selesai"
     ) {
 
-        /*
-         * Yang paling baru selesai
-         * ditampilkan paling atas.
-         */
-
         dataTampil.sort(
-            (a, b) =>
-                b.tanggalDate -
-                a.tanggalDate
+            (a, b) => {
+
+                return (
+                    b.tanggalDate -
+                    a.tanggalDate
+                );
+
+            }
         );
 
-    } else {
+    }
 
-        /*
-         * Jadwal mendatang dan semua
-         * dari tanggal terdekat.
-         */
+    else {
 
         dataTampil.sort(
-            (a, b) =>
-                a.tanggalDate -
-                b.tanggalDate
+            (a, b) => {
+
+                return (
+                    a.tanggalDate -
+                    b.tanggalDate
+                );
+
+            }
         );
 
     }
 
 
     // ======================================
-    // UPDATE JUMLAH
+    // JUMLAH
     // ======================================
 
-    jumlahJadwal.textContent =
-        `${dataTampil.length} kegiatan`;
+    if (jumlahJadwal) {
+
+        jumlahJadwal.textContent =
+            `${dataTampil.length} kegiatan`;
+
+    }
 
 
     // ======================================
-    // JIKA KOSONG
+    // KOSONG
     // ======================================
 
     if (
         dataTampil.length === 0
     ) {
 
-        jadwalEmpty.style.display =
-            "block";
-
-
-        // Ubah pesan sesuai filter
-
-        if (
-            filter === "mendatang"
-        ) {
-
-            jadwalEmpty.querySelector(
-                "h3"
-            ).textContent =
-                "Belum Ada Jadwal Mendatang";
-
-
-            jadwalEmpty.querySelector(
-                "p"
-            ).textContent =
-                "Saat ini belum ada kegiatan yang akan datang.";
-
-        }
-
-
-        else if (
-            filter === "selesai"
-        ) {
-
-            jadwalEmpty.querySelector(
-                "h3"
-            ).textContent =
-                "Belum Ada Jadwal Selesai";
-
-
-            jadwalEmpty.querySelector(
-                "p"
-            ).textContent =
-                "Belum terdapat kegiatan yang telah selesai.";
-
-        }
-
-
-        else {
-
-            jadwalEmpty.querySelector(
-                "h3"
-            ).textContent =
-                "Belum Ada Jadwal";
-
-
-            jadwalEmpty.querySelector(
-                "p"
-            ).textContent =
-                "Saat ini belum ada jadwal kegiatan.";
-
-        }
-
+        tampilkanKosong(
+            filter
+        );
 
         return;
 
     }
 
 
-    // ======================================
-    // SEMBUNYIKAN EMPTY
-    // ======================================
+    if (jadwalEmpty) {
 
-    jadwalEmpty.style.display =
-        "none";
+        jadwalEmpty.style.display =
+            "none";
+
+    }
 
 
     // ======================================
-    // TAMPILKAN CARD
+    // BUAT CARD
     // ======================================
 
     dataTampil.forEach(
-        (data) => {
+        (jadwal) => {
 
             const card =
                 buatCardJadwal(
-                    data
+                    jadwal
                 );
-
-
-            // Simpan status pada card
-
-            card.dataset.status =
-                data.tanggalDate >= hariIni
-                    ? "mendatang"
-                    : "selesai";
 
 
             jadwalContainer.appendChild(
@@ -530,10 +689,112 @@ function renderJadwal(filter) {
 
 
 // ==========================================
-// BUAT CARD JADWAL
+// PESAN KOSONG
 // ==========================================
 
-function buatCardJadwal(data) {
+function tampilkanKosong(
+    filter
+) {
+
+    if (!jadwalEmpty) {
+        return;
+    }
+
+
+    jadwalEmpty.style.display =
+        "block";
+
+
+    const title =
+        jadwalEmpty.querySelector(
+            "h3"
+        );
+
+    const text =
+        jadwalEmpty.querySelector(
+            "p"
+        );
+
+
+    if (
+        filter === "mendatang"
+    ) {
+
+        if (title) {
+
+            title.textContent =
+                "Belum Ada Jadwal Mendatang";
+
+        }
+
+
+        if (text) {
+
+            text.textContent =
+                "Saat ini belum ada kegiatan yang akan datang.";
+
+        }
+
+    }
+
+    else if (
+        filter === "selesai"
+    ) {
+
+        if (title) {
+
+            title.textContent =
+                "Belum Ada Jadwal Selesai";
+
+        }
+
+
+        if (text) {
+
+            text.textContent =
+                "Belum terdapat kegiatan yang telah selesai.";
+
+        }
+
+    }
+
+    else {
+
+        if (title) {
+
+            title.textContent =
+                "Belum Ada Jadwal";
+
+        }
+
+
+        if (text) {
+
+            text.textContent =
+                "Saat ini belum ada jadwal kegiatan.";
+
+        }
+
+    }
+
+
+    if (jumlahJadwal) {
+
+        jumlahJadwal.textContent =
+            "0 kegiatan";
+
+    }
+
+}
+
+
+// ==========================================
+// BUAT CARD
+// ==========================================
+
+function buatCardJadwal(
+    data
+) {
 
     const card =
         document.createElement(
@@ -546,7 +807,7 @@ function buatCardJadwal(data) {
 
 
     // ======================================
-    // FORMAT TANGGAL
+    // DATA
     // ======================================
 
     const tanggal =
@@ -573,82 +834,40 @@ function buatCardJadwal(data) {
         );
 
 
-    // ======================================
-    // WHATSAPP
-    // ======================================
-
-    let tombolWhatsApp = "";
-
-
-    if (data.WhatsApp) {
-
-        let nomor =
-            String(
-                data.WhatsApp
-            ).replace(
-                /\D/g,
-                ""
-            );
+    const acara =
+        data.Acara ||
+        data.acara ||
+        "Kegiatan Habsyi";
 
 
-        // Jika Indonesia diawali 0
-
-        if (
-            nomor.startsWith("0")
-        ) {
-
-            nomor =
-                "62" +
-                nomor.substring(1);
-
-        }
+    const waktu =
+        data.Waktu ||
+        data.waktu ||
+        "-";
 
 
-        const pesan =
-            encodeURIComponent(
-                `Assalamu'alaikum, saya ingin mengetahui informasi kegiatan ${data.Acara || "Safinatussurur"}.`
-            );
+    const lokasi =
+        data.Lokasi ||
+        data.lokasi ||
+        "-";
 
 
-        tombolWhatsApp = `
-
-            <a
-                href="https://wa.me/${nomor}?text=${pesan}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-wa"
-            >
-                💬 WhatsApp
-            </a>
-
-        `;
-
-    }
+    const pengundang =
+        data.Pengundang ||
+        data.pengundang ||
+        "-";
 
 
-    // ======================================
-    // GOOGLE MAPS
-    // ======================================
+    const maps =
+        data.Maps ||
+        data.maps ||
+        "";
 
-    let tombolMaps = "";
 
-
-    if (data.Maps) {
-
-        tombolMaps = `
-
-            <a
-                href="${escapeAttribute(data.Maps)}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-maps"
-            >
-                📍 Buka Maps
-            </a>
-
-        `;
-
-    }
+    const whatsapp =
+        data.WhatsApp ||
+        data.whatsapp ||
+        "";
 
 
     // ======================================
@@ -667,62 +886,171 @@ function buatCardJadwal(data) {
         sudahSelesai
 
             ? `
-                <span class="status-jadwal selesai">
+
+                <span
+                    class="status-jadwal selesai"
+                >
+
                     ✓ Selesai
+
                 </span>
+
               `
 
             : `
-                <span class="status-jadwal mendatang">
+
+                <span
+                    class="status-jadwal mendatang"
+                >
+
                     ● Mendatang
+
                 </span>
+
               `;
 
 
     // ======================================
-    // CARD HTML
+    // WHATSAPP
+    // ======================================
+
+    let tombolWhatsApp =
+        "";
+
+
+    if (whatsapp) {
+
+        let nomor =
+            String(
+                whatsapp
+            ).replace(
+                /\D/g,
+                ""
+            );
+
+
+        if (
+            nomor.startsWith("0")
+        ) {
+
+            nomor =
+                "62" +
+                nomor.substring(1);
+
+        }
+
+
+        const pesan =
+            encodeURIComponent(
+
+                `Assalamu'alaikum, saya ingin mengetahui informasi kegiatan ${acara}.`
+
+            );
+
+
+        tombolWhatsApp = `
+
+            <a
+                href="https://wa.me/${nomor}?text=${pesan}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-wa"
+            >
+
+                💬 WhatsApp
+
+            </a>
+
+        `;
+
+    }
+
+
+    // ======================================
+    // GOOGLE MAPS
+    // ======================================
+
+    let tombolMaps =
+        "";
+
+
+    if (maps) {
+
+        tombolMaps = `
+
+            <a
+                href="${escapeAttribute(
+                    maps
+                )}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-maps"
+            >
+
+                📍 Buka Maps
+
+            </a>
+
+        `;
+
+    }
+
+
+    // ======================================
+    // HTML CARD
     // ======================================
 
     card.innerHTML = `
 
         <div class="jadwal-card-header">
 
+
             <div class="tanggal">
 
                 <div class="tanggal-icon">
+
                     📅
+
                 </div>
+
 
                 <div class="tanggal-text">
 
                     <strong>
+
                         ${escapeHTML(
                             namaHari
                         )}
+
                     </strong>
 
+
                     <span>
+
                         ${escapeHTML(
                             tanggalLengkap
                         )}
+
                     </span>
 
                 </div>
 
             </div>
 
+
             ${statusHTML}
 
         </div>
 
 
+
         <div class="jadwal-card-body">
+
 
             <h3 class="acara">
 
                 ${escapeHTML(
-                    data.Acara ||
-                    "Kegiatan Habsyi"
+                    acara
                 )}
 
             </h3>
@@ -731,8 +1059,11 @@ function buatCardJadwal(data) {
             <div class="info-row">
 
                 <span class="info-icon">
+
                     🕐
+
                 </span>
+
 
                 <span>
 
@@ -743,20 +1074,25 @@ function buatCardJadwal(data) {
                     <br>
 
                     ${escapeHTML(
-                        data.Waktu ||
-                        "-"
+                        waktu
                     )}
+
+                    WITA
 
                 </span>
 
             </div>
 
 
+
             <div class="info-row">
 
                 <span class="info-icon">
+
                     📍
+
                 </span>
+
 
                 <span>
 
@@ -767,8 +1103,7 @@ function buatCardJadwal(data) {
                     <br>
 
                     ${escapeHTML(
-                        data.Lokasi ||
-                        "-"
+                        lokasi
                     )}
 
                 </span>
@@ -776,11 +1111,15 @@ function buatCardJadwal(data) {
             </div>
 
 
+
             <div class="info-row">
 
                 <span class="info-icon">
+
                     👤
+
                 </span>
+
 
                 <span>
 
@@ -791,13 +1130,13 @@ function buatCardJadwal(data) {
                     <br>
 
                     ${escapeHTML(
-                        data.Pengundang ||
-                        "-"
+                        pengundang
                     )}
 
                 </span>
 
             </div>
+
 
 
             <div class="jadwal-actions">
@@ -807,6 +1146,7 @@ function buatCardJadwal(data) {
                 ${tombolWhatsApp}
 
             </div>
+
 
         </div>
 
@@ -822,9 +1162,13 @@ function buatCardJadwal(data) {
 // ESCAPE HTML
 // ==========================================
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
-    return String(value)
+    return String(
+        value ?? ""
+    )
 
         .replace(
             /&/g,
@@ -858,9 +1202,13 @@ function escapeHTML(value) {
 // ESCAPE ATTRIBUTE
 // ==========================================
 
-function escapeAttribute(value) {
+function escapeAttribute(
+    value
+) {
 
-    return String(value)
+    return String(
+        value ?? ""
+    )
 
         .replace(
             /&/g,
