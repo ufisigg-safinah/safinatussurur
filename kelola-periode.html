@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kelola Periode - Safinatussurur</title>
+
+    <link
+        rel="stylesheet"
+        href="kelola-periode.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     SIDEBAR
+================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- HEADER SIDEBAR -->
+
+    <div class="sidebar-header">
+
+        <div class="logo">
+            S
+        </div>
+
+        <div>
+
+            <h2>
+                Safinatussurur
+            </h2>
+
+            <p>
+                Panel Pengurus
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGASI -->
+
+    <nav class="sidebar-nav">
+
+
+        <!-- DASHBOARD -->
+
+        <a href="dashboard.html">
+
+            <span>
+                🏠
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <!-- ANGGOTA -->
+
+        <a href="kelola-anggota.html">
+
+            <span>
+                👥
+            </span>
+
+            Anggota
+
+        </a>
+
+
+        <!-- JADWAL -->
+
+        <a href="kelola-jadwal.html">
+
+            <span>
+                📅
+            </span>
+
+            Jadwal
+
+        </a>
+
+
+        <!-- PERIODE -->
+
+        <a
+            href="kelola-periode.html"
+            class="active"
+        >
+
+            <span>
+                📋
+            </span>
+
+            Periode
+
+        </a>
+
+
+         <!-- KEUANGAN -->
+    <a href="kelola-keuangan.html">
+
+        <span>
+            💰
+        </span>
+
+        Keuangan
+
+    </a>
+
+
+    </nav>
+
+
+    <!-- LOGOUT -->
+
+    <div class="sidebar-bottom">
+
+        <button
+            type="button"
+            id="logout-button"
+        >
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =================================
+     KONTEN UTAMA
+================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================
+         HEADER
+    ================================== -->
+
+    <header class="page-header">
+
+
+        <div>
+
+            <h1>
+                Kelola Periode
+            </h1>
+
+            <p>
+                Kelola periode absensi
+                Grup Habsyi Safinatussurur.
+            </p>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="user-info">
+
+
+            <div class="user-icon">
+                👤
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Pengurus
+                </strong>
+
+                <small id="user-email">
+                    Memuat...
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =================================
+         DATA PERIODE
+    ================================== -->
+
+    <section class="content-card">
+
+
+        <!-- HEADER CARD -->
+
+        <div class="card-header">
+
+
+            <div>
+
+                <h2>
+                    Data Periode
+                </h2>
+
+                <p>
+                    Kelola periode absensi anggota.
+                </p>
+
+            </div>
+
+
+            <!-- TAMBAH PERIODE -->
+
+            <button
+                type="button"
+                id="tambah-periode-button"
+                class="btn-primary"
+            >
+
+                + Tambah
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             SEARCH
+        ================================== -->
+
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="search-periode"
+                placeholder="Cari nama periode..."
+            >
+
+        </div>
+
+
+
+        <!-- =================================
+             DAFTAR PERIODE
+        ================================== -->
+
+        <div
+            id="periode-list"
+            class="periode-list"
+        >
+
+
+            <!-- =================================
+                 DATA SEMENTARA
+                 NANTI DIGANTI FIREBASE
+            ================================== -->
+
+
+            <div class="periode-card">
+
+
+                <!-- ICON -->
+
+                <div class="periode-icon">
+
+                    <span>
+                        📋
+                    </span>
+
+                    <small>
+                        PERIODE
+                    </small>
+
+                </div>
+
+
+                <!-- INFORMASI -->
+
+                <div class="periode-info">
+
+
+                    <h3>
+                        Maulid Nabi 2026
+                    </h3>
+
+
+                    <p>
+                        20 Agustus 2026 -
+                        30 September 2026
+                    </p>
+
+
+                    <p class="periode-keterangan">
+                        Periode absensi kegiatan Maulid
+                    </p>
+
+
+                    <span class="periode-status">
+                        Aktif
+                    </span>
+
+
+                </div>
+
+
+                <!-- AKSI -->
+
+                <div class="periode-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn-lihat"
+                    >
+
+                        Lihat
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-edit"
+                    >
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-hapus"
+                    >
+
+                        Hapus
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 PERIODE CONTOH 2
+            ================================== -->
+
+            <div class="periode-card">
+
+
+                <div class="periode-icon">
+
+                    <span>
+                        📋
+                    </span>
+
+                    <small>
+                        PERIODE
+                    </small>
+
+                </div>
+
+
+                <div class="periode-info">
+
+
+                    <h3>
+                        Ramadhan 2026
+                    </h3>
+
+
+                    <p>
+                        18 Februari 2026 -
+                        20 Maret 2026
+                    </p>
+
+
+                    <p class="periode-keterangan">
+                        Absensi kegiatan bulan Ramadhan
+                    </p>
+
+
+                    <span class="periode-status selesai">
+                        Selesai
+                    </span>
+
+
+                </div>
+
+
+                <div class="periode-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn-lihat"
+                    >
+
+                        Lihat
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-edit"
+                    >
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-hapus"
+                    >
+
+                        Hapus
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         MODAL TAMBAH / EDIT PERIODE
+    ================================== -->
+
+    <div
+        id="periode-modal"
+        class="modal"
+    >
+
+
+        <div class="modal-content">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header">
+
+
+                <div>
+
+                    <h2 id="modal-title">
+                        Tambah Periode
+                    </h2>
+
+                    <p>
+                        Masukkan informasi periode absensi.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="close-modal"
+                    class="close-button"
+                >
+
+                    ×
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 FORM
+            ================================== -->
+
+            <form id="periode-form">
+
+
+                <!-- ID PERIODE -->
+
+                <input
+                    type="hidden"
+                    id="periode-id"
+                >
+
+
+                <!-- NAMA PERIODE -->
+
+                <div class="form-group">
+
+
+                    <label for="nama-periode">
+
+                        Nama Periode
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nama-periode"
+                        placeholder="Contoh: Maulid Nabi 2026"
+                        required
+                    >
+
+
+                </div>
+
+
+
+                <!-- TANGGAL MULAI -->
+
+                <div class="form-group">
+
+
+                    <label for="tanggal-mulai">
+
+                        Tanggal Mulai
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="tanggal-mulai"
+                        required
+                    >
+
+
+                </div>
+
+
+
+                <!-- TANGGAL SELESAI -->
+
+                <div class="form-group">
+
+
+                    <label for="tanggal-selesai">
+
+                        Tanggal Selesai
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="tanggal-selesai"
+                        required
+                    >
+
+
+                </div>
+
+
+
+                <!-- KETERANGAN -->
+
+                <div class="form-group">
+
+
+                    <label for="keterangan">
+
+                        Keterangan
+
+                    </label>
+
+
+                    <textarea
+                        id="keterangan"
+                        placeholder="Contoh: Periode absensi kegiatan Maulid"
+                    ></textarea>
+
+
+                </div>
+
+
+
+                <!-- PESAN -->
+
+                <p id="form-message"></p>
+
+
+
+                <!-- BUTTON -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="button"
+                        id="cancel-button"
+                        class="btn-secondary"
+                    >
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="save-button"
+                        class="btn-primary"
+                    >
+
+                        Simpan
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</main>
+
+
+
+<!-- =================================
+     JAVASCRIPT
+================================== -->
+
+<script
+    type="module"
+    src="js/kelola-periode.js"
+></script>
+
+
+</body>
+
+</html>

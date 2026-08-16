@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rekap Absensi - Safinatussurur</title>
+
+    <link
+        rel="stylesheet"
+        href="rekap-absensi.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="page-header">
+
+        <div class="header-container">
+
+            <button
+                type="button"
+                id="back-button"
+                class="back-button"
+                aria-label="Kembali"
+            >
+                ←
+            </button>
+
+
+            <div class="header-title">
+
+                <span>
+                    REKAP ABSENSI
+                </span>
+
+                <strong>
+                    Safinatussurur
+                </strong>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         KONTEN UTAMA
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =========================================
+             INTRO
+        ========================================== -->
+
+        <section class="intro-section">
+
+            <span class="section-label">
+                📊 KEHADIRAN ANGGOTA
+            </span>
+
+
+            <h1>
+                Rekap Absensi
+            </h1>
+
+
+            <p>
+                Lihat jumlah kehadiran setiap anggota
+                berdasarkan periode.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PERIODE
+        ========================================== -->
+
+        <section class="periode-card">
+
+
+            <div class="periode-header">
+
+                <div>
+
+                    <span class="card-label">
+                        PERIODE ABSENSI
+                    </span>
+
+
+                    <h2>
+                        Pilih Periode
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="tambah-periode-button"
+                    class="btn-primary"
+                >
+                    + Periode Baru
+                </button>
+
+            </div>
+
+
+
+            <div class="periode-select-container">
+
+                <label for="periode-select">
+                    Periode aktif
+                </label>
+
+
+                <select id="periode-select">
+
+                    <option value="">
+                        Memuat periode...
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             RINGKASAN
+        ========================================== -->
+
+        <section class="ringkasan-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        RINGKASAN
+                    </span>
+
+
+                    <h2>
+                        Kehadiran
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="ringkasan-grid">
+
+
+                <!-- =================================
+                     TOTAL ANGGOTA
+                ================================== -->
+
+                <div class="ringkasan-card">
+
+                    <div class="ringkasan-icon anggota">
+                        👥
+                    </div>
+
+
+                    <div>
+
+                        <strong id="total-anggota">
+                            0
+                        </strong>
+
+
+                        <span>
+                            Total Anggota
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TOTAL HADIR
+                ================================== -->
+
+                <div class="ringkasan-card hadir">
+
+                    <div class="ringkasan-icon">
+                        ✓
+                    </div>
+
+
+                    <div>
+
+                        <strong id="total-hadir">
+                            0
+                        </strong>
+
+
+                        <span>
+                            Total Hadir
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TOTAL TIDAK HADIR
+                ================================== -->
+
+                <div class="ringkasan-card tidak-hadir">
+
+                    <div class="ringkasan-icon">
+                        ×
+                    </div>
+
+
+                    <div>
+
+                        <strong id="total-tidak-hadir">
+                            0
+                        </strong>
+
+
+                        <span>
+                            Tidak Hadir
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TOTAL JADWAL
+                ================================== -->
+
+                <div class="ringkasan-card jadwal">
+
+                    <div class="ringkasan-icon">
+                        📅
+                    </div>
+
+
+                    <div>
+
+                        <strong id="total-jadwal">
+                            0
+                        </strong>
+
+
+                        <span>
+                            Total Jadwal
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             DATA ANGGOTA
+        ========================================== -->
+
+        <section class="table-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        DATA ANGGOTA
+                    </span>
+
+
+                    <h2>
+                        Kehadiran Per Anggota
+                    </h2>
+
+
+                    <p>
+                        Rekap kehadiran anggota pada
+                        periode yang dipilih.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 TABEL
+            ================================== -->
+
+            <div class="table-card">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    No
+                                </th>
+
+                                <th>
+                                    Nama
+                                </th>
+
+                                <th>
+                                    Hadir
+                                </th>
+
+                                <th>
+                                    Tidak Hadir
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Kehadiran
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <!--
+                            DATA AKAN DIISI
+                            OLEH JAVASCRIPT
+                        -->
+
+                        <tbody id="rekap-table-body">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             INFORMASI
+        ========================================== -->
+
+        <section class="info-card">
+
+            <div class="info-icon">
+                💡
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Tentang Periode
+                </strong>
+
+
+                <p>
+                    Membuat periode baru tidak akan
+                    menghapus data absensi sebelumnya.
+                    Data setiap periode tetap tersimpan
+                    sebagai riwayat.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         MODAL PERIODE BARU
+    ========================================== -->
+
+    <div
+        id="periode-modal"
+        class="modal"
+    >
+
+
+        <div class="modal-content">
+
+
+            <!-- =================================
+                 HEADER MODAL
+            ================================== -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="card-label">
+                        PERIODE BARU
+                    </span>
+
+
+                    <h2>
+                        Buat Periode Absensi
+                    </h2>
+
+
+                    <p>
+                        Buat periode baru tanpa
+                        menghapus data sebelumnya.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="close-modal"
+                    class="close-button"
+                    aria-label="Tutup"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================
+                 FORM PERIODE
+            ================================== -->
+
+            <form id="periode-form">
+
+
+                <!-- NAMA -->
+
+                <div class="form-group">
+
+                    <label for="nama-periode">
+                        Nama Periode
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nama-periode"
+                        placeholder="Contoh: September 2026"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- TANGGAL MULAI -->
+
+                <div class="form-group">
+
+                    <label for="tanggal-mulai">
+                        Tanggal Mulai
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="tanggal-mulai"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- TANGGAL SELESAI -->
+
+                <div class="form-group">
+
+                    <label for="tanggal-selesai">
+                        Tanggal Selesai
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="tanggal-selesai"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PESAN -->
+
+                <p
+                    id="periode-message"
+                    class="periode-message"
+                ></p>
+
+
+
+                <!-- BUTTON -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="cancel-button"
+                        class="btn-secondary"
+                    >
+                        Batal
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Buat Periode
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script
+        type="module"
+        src="js/rekap-absensi.js"
+    ></script>
+
+
+</body>
+
+</html>
