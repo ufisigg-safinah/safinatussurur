@@ -1,0 +1,1245 @@
+# `absensi.css`
+
+```css
+/* =========================================================
+   SAFINATUSSURUR
+   ABSENSI ANGGOTA
+   MOBILE APP ONLY
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --primary: #087a4b;
+    --primary-dark: #05603a;
+    --primary-light: #e6f6ed;
+
+    --green-soft: #f1faf5;
+    --green-card: #eaf7f0;
+
+    --gold: #c9a227;
+    --gold-light: #f8f1d8;
+
+    --dark: #12382a;
+    --text: #52675d;
+    --muted: #8b9992;
+
+    --white: #ffffff;
+
+    --background: #eef5f1;
+
+    --border: #dce9e1;
+
+    --shadow:
+        0 8px 25px rgba(8, 122, 75, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    width: 100%;
+    min-height: 100%;
+    background: #dfe7e2;
+}
+
+
+body {
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    font-family:
+        "Poppins",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #dfe7e2;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    padding-bottom: 35px;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   APLIKASI HP
+========================================================= */
+
+body > * {
+
+    width: 430px;
+    max-width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.absensi-header {
+
+    width: 430px;
+    max-width: 100%;
+
+    height: 68px;
+
+    margin: 0 auto;
+
+    padding: 0 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 4px 18px
+        rgba(8, 122, 75, 0.05);
+}
+
+
+/* =========================================================
+   HEADER CONTAINER
+========================================================= */
+
+.header-container {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* =========================================================
+   TOMBOL KEMBALI
+========================================================= */
+
+.back-button {
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.back-button:active {
+
+    transform: scale(0.94);
+
+    background: #d9f1e3;
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.header-title {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.header-title span {
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.header-title strong {
+
+    margin-top: 4px;
+
+    color: var(--dark);
+
+    font-size: 15px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+
+    width: 430px;
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        13px
+        16px
+        30px;
+}
+
+
+/* =========================================================
+   INFORMASI JADWAL
+========================================================= */
+
+.jadwal-info-card {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 17px 16px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087a4b 0%,
+            #16a268 55%,
+            #28b779 100%
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(8, 122, 75, 0.16);
+}
+
+
+/* Dekorasi */
+
+.jadwal-info-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 145px;
+    height: 145px;
+
+    right: -70px;
+    top: -75px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+}
+
+
+.jadwal-info-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    right: 35px;
+    bottom: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   LABEL JADWAL
+========================================================= */
+
+.jadwal-info-label {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding:
+        6px
+        9px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    color:
+        rgba(255, 255, 255, 0.92);
+
+    font-size: 6.5px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   NAMA KEGIATAN
+========================================================= */
+
+.jadwal-info-card h1 {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 10px;
+
+    color: white;
+
+    font-size: 21px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================================================
+   INFORMASI JADWAL
+========================================================= */
+
+.jadwal-info-list {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 13px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 6px;
+}
+
+
+.info-item {
+
+    min-width: 0;
+
+    padding: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+}
+
+
+.info-icon {
+
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    font-size: 9px;
+}
+
+
+.info-item div {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.info-item small {
+
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    font-size: 5.5px;
+
+    line-height: 1.2;
+}
+
+
+.info-item strong {
+
+    margin-top: 2px;
+
+    overflow: hidden;
+
+    color: white;
+
+    font-size: 6.5px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.rekap-section,
+.anggota-section {
+
+    width: 100%;
+
+    margin-top: 17px;
+}
+
+
+.section-title {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.section-title h2 {
+
+    color: var(--dark);
+
+    font-size: 17px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+
+.section-title p {
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 6.5px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   TOTAL ANGGOTA
+========================================================= */
+
+.total-anggota {
+
+    min-width: 62px;
+
+    padding:
+        7px
+        9px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 9px;
+
+    background:
+        var(--primary-light);
+
+    color: var(--primary);
+}
+
+
+.total-anggota strong {
+
+    font-size: 12px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+
+.total-anggota span {
+
+    margin-top: 3px;
+
+    font-size: 5.5px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   REKAP
+========================================================= */
+
+.rekap-container {
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+.rekap-card {
+
+    min-height: 66px;
+
+    padding: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    border-radius: 13px;
+
+    background: white;
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        0 3px 12px
+        rgba(8, 122, 75, 0.05);
+}
+
+
+.rekap-card.hadir {
+
+    border-left:
+        3px solid
+        #087a4b;
+}
+
+
+.rekap-card.tidak-hadir {
+
+    border-left:
+        3px solid
+        #d45d5d;
+}
+
+
+.rekap-icon {
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.rekap-card.hadir .rekap-icon {
+
+    background: #e8f7ef;
+
+    color: #087a4b;
+}
+
+
+.rekap-card.tidak-hadir .rekap-icon {
+
+    background: #fceeee;
+
+    color: #d45d5d;
+}
+
+
+.rekap-card div {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.rekap-card strong {
+
+    color: var(--dark);
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+
+.rekap-card span:not(.rekap-icon) {
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 6px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DAFTAR ANGGOTA
+========================================================= */
+
+.anggota-list {
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.anggota-item {
+
+    width: 100%;
+
+    min-height: 69px;
+
+    padding:
+        9px 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    border:
+        1px solid
+        #e2ebe6;
+
+    border-radius: 13px;
+
+    background: white;
+
+    box-shadow:
+        0 3px 12px
+        rgba(8, 122, 75, 0.05);
+}
+
+
+/* =========================================================
+   NOMOR ANGGOTA
+========================================================= */
+
+.anggota-number {
+
+    width: 25px;
+    height: 25px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    font-size: 7px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   INFORMASI ANGGOTA
+========================================================= */
+
+.anggota-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.anggota-info strong {
+
+    overflow: hidden;
+
+    color: #17352a;
+
+    font-size: 9px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+.anggota-info span {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 6px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   PILIHAN ABSENSI
+========================================================= */
+
+.absensi-option {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    width: 92px;
+}
+
+
+.status-button {
+
+    width: 100%;
+
+    min-height: 24px;
+
+    padding:
+        0 6px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 7px;
+
+    background:
+        #f7faf8;
+
+    color:
+        #7b8983;
+
+    font-size: 5.5px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+/* =========================================================
+   HADIR AKTIF
+========================================================= */
+
+.status-button.hadir.active {
+
+    border-color:
+        #bde5cf;
+
+    background:
+        #e8f7ef;
+
+    color:
+        #087a4b;
+
+    box-shadow:
+        0 1px 5px
+        rgba(8, 122, 75, 0.08);
+}
+
+
+/* =========================================================
+   TIDAK HADIR AKTIF
+========================================================= */
+
+.status-button.tidak-hadir.active {
+
+    border-color:
+        #efcaca;
+
+    background:
+        #fceeee;
+
+    color:
+        #c74f4f;
+
+    box-shadow:
+        0 1px 5px
+        rgba(199, 79, 79, 0.08);
+}
+
+
+/* =========================================================
+   EFEK TEKAN
+========================================================= */
+
+.status-button:active {
+
+    transform:
+        scale(0.96);
+}
+
+
+/* =========================================================
+   PESAN
+========================================================= */
+
+.absensi-message {
+
+    width: 100%;
+
+    min-height: 16px;
+
+    margin-top: 10px;
+
+    color: var(--primary);
+
+    text-align: center;
+
+    font-size: 6.5px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TOMBOL SIMPAN
+========================================================= */
+
+.save-container {
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding-bottom: 15px;
+}
+
+
+.save-button {
+
+    width: 100%;
+
+    min-height: 43px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087a4b,
+            #16a268
+        );
+
+    color: white;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px
+        rgba(8, 122, 75, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.save-button:active {
+
+    transform:
+        scale(0.98);
+
+    box-shadow:
+        0 4px 12px
+        rgba(8, 122, 75, 0.14);
+}
+
+
+/* =========================================================
+   DESKTOP = TETAP HP
+========================================================= */
+
+@media (min-width: 431px) {
+
+    body {
+
+        background:
+            #dfe7e2;
+    }
+
+
+    .absensi-header,
+    .main-content {
+
+        width: 430px;
+
+        max-width: 430px;
+    }
+}
+
+
+/* =========================================================
+   HP KECIL
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .absensi-header {
+
+        padding:
+            0 13px;
+    }
+
+
+    .main-content {
+
+        padding:
+            11px
+            13px
+            25px;
+    }
+
+
+    .jadwal-info-card {
+
+        padding:
+            15px 13px;
+
+        border-radius: 16px;
+    }
+
+
+    .jadwal-info-card h1 {
+
+        font-size: 19px;
+    }
+
+
+    .jadwal-info-list {
+
+        gap: 4px;
+    }
+
+
+    .info-item {
+
+        padding: 6px;
+
+        gap: 4px;
+    }
+
+
+    .info-icon {
+
+        width: 20px;
+        height: 20px;
+
+        font-size: 8px;
+    }
+
+
+    .info-item small {
+
+        font-size: 5px;
+    }
+
+
+    .info-item strong {
+
+        font-size: 5.5px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 16px;
+    }
+
+
+    .rekap-card {
+
+        min-height: 61px;
+
+        padding: 8px;
+    }
+
+
+    .rekap-icon {
+
+        width: 27px;
+        height: 27px;
+
+        font-size: 13px;
+    }
+
+
+    .rekap-card strong {
+
+        font-size: 14px;
+    }
+
+
+    .anggota-item {
+
+        padding:
+            8px;
+
+        min-height: 66px;
+    }
+
+
+    .anggota-number {
+
+        width: 23px;
+        height: 23px;
+    }
+
+
+    .anggota-info strong {
+
+        font-size: 8px;
+    }
+
+
+    .anggota-info span {
+
+        font-size: 5.5px;
+    }
+
+
+    .absensi-option {
+
+        width: 86px;
+    }
+
+
+    .status-button {
+
+        min-height: 23px;
+
+        font-size: 5px;
+    }
+
+
+    .save-button {
+
+        min-height: 41px;
+
+        font-size: 7.5px;
+    }
+
+}
+
+
+/* =========================================================
+   SAFE AREA IPHONE
+========================================================= */
+
+@supports (
+    padding-bottom: env(safe-area-inset-bottom)
+) {
+
+    body {
+
+        padding-bottom:
+            calc(
+                35px +
+                env(safe-area-inset-bottom)
+            );
+    }
+
+
+    .save-container {
+
+        padding-bottom:
+            calc(
+                15px +
+                env(safe-area-inset-bottom)
+            );
+    }
+
+}
+```

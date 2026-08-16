@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Absensi Anggota - Safinatussurur</title>
+
+    <link
+        rel="stylesheet"
+        href="absensi.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         HEADER
+    ================================== -->
+
+    <header class="absensi-header">
+
+        <div class="header-container">
+
+            <!-- TOMBOL KEMBALI -->
+
+            <button
+                type="button"
+                id="back-button"
+                class="back-button"
+            >
+                ←
+            </button>
+
+
+            <!-- JUDUL -->
+
+            <div class="header-title">
+
+                <span>
+                    ABSENSI
+                </span>
+
+                <strong>
+                    Safinatussurur
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================
+         KONTEN UTAMA
+    ================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================
+             INFORMASI JADWAL
+        ================================== -->
+
+        <section class="jadwal-info-card">
+
+            <div class="jadwal-info-label">
+                📅 JADWAL KEGIATAN
+            </div>
+
+
+            <h1 id="nama-kegiatan">
+                Maulid Nabi
+            </h1>
+
+
+            <div class="jadwal-info-list">
+
+
+                <!-- TANGGAL -->
+
+                <div class="info-item">
+
+                    <span class="info-icon">
+                        📅
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Tanggal
+                        </small>
+
+                        <strong id="tanggal-kegiatan">
+                            20 Agustus 2026
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WAKTU -->
+
+                <div class="info-item">
+
+                    <span class="info-icon">
+                        🕐
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Waktu
+                        </small>
+
+                        <strong id="waktu-kegiatan">
+                            20.00 WITA
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOKASI -->
+
+                <div class="info-item">
+
+                    <span class="info-icon">
+                        📍
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Lokasi
+                        </small>
+
+                        <strong id="lokasi-kegiatan">
+                            Masjid
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             REKAP ABSENSI
+        ================================== -->
+
+        <section class="rekap-section">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Kehadiran
+                    </h2>
+
+                    <p>
+                        Rekap kehadiran anggota
+                    </p>
+
+                </div>
+
+
+                <div class="total-anggota">
+
+                    <strong id="total-anggota">
+                        0
+                    </strong>
+
+                    <span>
+                        Anggota
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REKAP CARD -->
+
+            <div class="rekap-container">
+
+
+                <!-- HADIR -->
+
+                <div class="rekap-card hadir">
+
+                    <span class="rekap-icon">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <strong id="jumlah-hadir">
+                            0
+                        </strong>
+
+                        <span>
+                            Hadir
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TIDAK HADIR -->
+
+                <div class="rekap-card tidak-hadir">
+
+                    <span class="rekap-icon">
+                        ×
+                    </span>
+
+                    <div>
+
+                        <strong id="jumlah-tidak-hadir">
+                            0
+                        </strong>
+
+                        <span>
+                            Tidak Hadir
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             DAFTAR ANGGOTA
+        ================================== -->
+
+        <section class="anggota-section">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Daftar Anggota
+                    </h2>
+
+                    <p>
+                        Tentukan kehadiran setiap anggota
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LIST ANGGOTA -->
+
+            <div
+                id="anggota-list"
+                class="anggota-list"
+            >
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PESAN
+        ================================== -->
+
+        <p
+            id="absensi-message"
+            class="absensi-message"
+        ></p>
+
+
+
+        <!-- =================================
+             TOMBOL SIMPAN
+        ================================== -->
+
+        <div class="save-container">
+
+            <button
+                type="button"
+                id="save-absensi-button"
+                class="save-button"
+            >
+
+                ✓ Simpan Absensi
+
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =================================
+         JAVASCRIPT
+         NANTI DIGUNAKAN UNTUK FIREBASE
+    ================================== -->
+
+    <script
+        type="module"
+        src="js/absensi-admin.js"
+    ></script>
+
+
+</body>
+
+</html>
+```
