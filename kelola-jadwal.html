@@ -19,9 +19,9 @@
 <body>
 
 
-<!-- =================================
+<!-- ==================================================
      SIDEBAR
-================================== -->
+================================================== -->
 
 <aside class="sidebar">
 
@@ -33,7 +33,9 @@
 
         <div>
 
-            <h2>Safinatussurur</h2>
+            <h2>
+                Safinatussurur
+            </h2>
 
             <p>
                 Panel Pengurus
@@ -74,6 +76,13 @@
         </a>
 
 
+        <a href="kelola-periode.html">
+
+            <span>📋</span>
+
+            Periode
+
+        </a>
 
 
         <a href="kelola-keuangan.html">
@@ -101,18 +110,24 @@
 
 
 
-<!-- =================================
+<!-- ==================================================
      KONTEN UTAMA
-================================== -->
+================================================== -->
 
 <main class="main-content">
 
 
-    <!-- HEADER -->
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
 
     <header class="page-header">
 
         <div>
+
+            <span class="page-label">
+                PANEL PENGURUS
+            </span>
 
             <h1>
                 Kelola Jadwal
@@ -150,12 +165,14 @@
 
 
 
-    <!-- =================================
+    <!-- ==================================================
          DATA JADWAL
-    ================================== -->
+    ================================================== -->
 
     <section class="content-card">
 
+
+        <!-- HEADER CARD -->
 
         <div class="card-header">
 
@@ -174,6 +191,7 @@
 
 
             <button
+                type="button"
                 id="tambah-jadwal-button"
                 class="btn-primary"
             >
@@ -186,7 +204,65 @@
 
 
 
-        <!-- SEARCH -->
+        <!-- ==================================================
+             FILTER JADWAL
+        ================================================== -->
+
+        <div class="jadwal-filter">
+
+            <button
+                type="button"
+                class="filter-btn active"
+                data-filter="semua"
+            >
+
+                Semua
+
+            </button>
+
+
+            <button
+                type="button"
+                class="filter-btn"
+                data-filter="mendatang"
+            >
+
+                Mendatang
+
+            </button>
+
+
+            <button
+                type="button"
+                class="filter-btn"
+                data-filter="selesai"
+            >
+
+                Selesai
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             INFO FILTER
+        ================================================== -->
+
+        <div class="jadwal-info">
+
+            <span id="jumlah-jadwal">
+                0 kegiatan
+            </span>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             SEARCH
+        ================================================== -->
 
         <div class="search-container">
 
@@ -194,13 +270,16 @@
                 type="text"
                 id="search-jadwal"
                 placeholder="Cari acara, lokasi, atau pengundang..."
+                autocomplete="off"
             >
 
         </div>
 
 
 
-        <!-- TABEL -->
+        <!-- ==================================================
+             TABEL JADWAL
+        ================================================== -->
 
         <div class="table-container">
 
@@ -210,21 +289,45 @@
 
                     <tr>
 
-                        <th>No</th>
+                        <th>
+                            No
+                        </th>
 
-                        <th>Tanggal</th>
+                        <th>
+                            Tanggal
+                        </th>
 
-                        <th>Waktu</th>
+                        <th>
+                            Waktu
+                        </th>
 
-                        <th>Acara</th>
+                        <th>
+                            Acara
+                        </th>
 
-                        <th>Lokasi</th>
+                        <th>
+                            Lokasi
+                        </th>
 
-                        <th>Pengundang</th>
+                        <th>
+                            Pengundang
+                        </th>
 
-                        <th>Kontak</th>
+                        <th>
+                            Periode Absensi
+                        </th>
 
-                        <th>Aksi</th>
+                        <th>
+                            Kontak
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Aksi
+                        </th>
 
                     </tr>
 
@@ -236,7 +339,7 @@
                     <tr>
 
                         <td
-                            colspan="8"
+                            colspan="10"
                             class="loading"
                         >
 
@@ -256,17 +359,20 @@
 
 
 
-    <!-- =================================
-         MODAL TAMBAH / EDIT
-================================== -->
+    <!-- ==================================================
+         MODAL TAMBAH / EDIT JADWAL
+    ================================================== -->
 
     <div
         id="jadwal-modal"
         class="modal"
     >
 
+
         <div class="modal-content">
 
+
+            <!-- HEADER MODAL -->
 
             <div class="modal-header">
 
@@ -284,8 +390,10 @@
 
 
                 <button
+                    type="button"
                     id="close-modal"
                     class="close-button"
+                    aria-label="Tutup"
                 >
 
                     ×
@@ -296,12 +404,14 @@
 
 
 
-            <!-- FORM -->
+            <!-- ==================================================
+                 FORM
+            ================================================== -->
 
             <form id="jadwal-form">
 
 
-                <!-- ID DOKUMEN -->
+                <!-- ID JADWAL -->
 
                 <input
                     type="hidden"
@@ -309,7 +419,9 @@
                 >
 
 
-                <!-- TANGGAL -->
+                <!-- ==================================================
+                     TANGGAL
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -325,11 +437,19 @@
                         required
                     >
 
+                    <small class="input-help">
+
+                        Pilih tanggal kegiatan.
+
+                    </small>
+
                 </div>
 
 
 
-                <!-- WAKTU -->
+                <!-- ==================================================
+                     WAKTU
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -349,13 +469,18 @@
 
                         Waktu akan ditampilkan sebagai WITA.
 
+                        Jadwal dianggap selesai
+                        5 jam setelah waktu kegiatan.
+
                     </small>
 
                 </div>
 
 
 
-                <!-- ACARA -->
+                <!-- ==================================================
+                     ACARA
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -376,7 +501,9 @@
 
 
 
-                <!-- LOKASI -->
+                <!-- ==================================================
+                     LOKASI
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -397,7 +524,9 @@
 
 
 
-                <!-- PENGUNDANG -->
+                <!-- ==================================================
+                     PENGUNDANG
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -418,7 +547,48 @@
 
 
 
-                <!-- MAPS -->
+                <!-- ==================================================
+                     PERIODE ABSENSI OTOMATIS
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Periode Absensi
+
+                    </label>
+
+
+                    <div
+                        id="periode-info"
+                        class="periode-info"
+                    >
+
+                        <div class="periode-loading">
+
+                            📋 Pilih tanggal kegiatan terlebih dahulu.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ID PERIODE DISIMPAN OLEH JAVASCRIPT -->
+
+                    <input
+                        type="hidden"
+                        id="periode-id"
+                        value=""
+                    >
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     GOOGLE MAPS
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -444,7 +614,9 @@
 
 
 
-                <!-- WHATSAPP -->
+                <!-- ==================================================
+                     WHATSAPP
+                ================================================== -->
 
                 <div class="form-group">
 
@@ -462,7 +634,8 @@
 
                     <small class="input-help">
 
-                        Gunakan format 628xxxx tanpa tanda +.
+                        Gunakan format 628xxxx
+                        tanpa tanda +.
 
                     </small>
 
@@ -470,15 +643,23 @@
 
 
 
-                <!-- PESAN -->
+                <!-- ==================================================
+                     PESAN FORM
+                ================================================== -->
 
-                <p id="form-message"></p>
+                <p
+                    id="form-message"
+                    class="form-message"
+                ></p>
 
 
 
-                <!-- ACTION -->
+                <!-- ==================================================
+                     ACTION
+                ================================================== -->
 
                 <div class="form-actions">
+
 
                     <button
                         type="button"
@@ -501,7 +682,9 @@
 
                     </button>
 
+
                 </div>
+
 
             </form>
 
@@ -510,15 +693,19 @@
     </div>
 
 
+
 </main>
 
 
 
-<!-- =================================
+<!-- ==================================================
      JAVASCRIPT
-================================== -->
+================================================== -->
 
-<script type="module" src="js/kelola-jadwal.js"></script>
+<script
+    type="module"
+    src="js/kelola-jadwal.js"
+></script>
 
 
 </body>
