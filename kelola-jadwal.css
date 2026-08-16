@@ -2,12 +2,19 @@
    SAFINATUSSURUR
    KELOLA JADWAL
    MODERN ISLAMIC - MOBILE APP
+   VERSI BARU
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
 ========================================================= */
 
 :root {
+
     --primary: #087a4b;
     --primary-dark: #05603a;
-    --primary-light: #e6f6ed;
+    --primary-light: #e5f6ed;
 
     --green-soft: #f1faf5;
     --green-card: #eaf7f0;
@@ -20,11 +27,16 @@
     --muted: #82918a;
 
     --white: #ffffff;
+
     --background: #dfe7e2;
 
     --border: #d9e7df;
 
     --danger: #c34d4d;
+    --danger-light: #fff0f0;
+
+    --success: #087a4b;
+    --success-light: #e8f7ef;
 
     --radius-sm: 10px;
     --radius-md: 15px;
@@ -61,11 +73,22 @@ body {
         Arial,
         sans-serif;
 
-    background: var(--background);
-
     color: var(--text);
 
+    background: var(--background);
+
     overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    border: none;
 }
 
 a {
@@ -73,20 +96,16 @@ a {
     text-decoration: none;
 }
 
-button,
-input,
-select {
-    font-family: inherit;
-}
-
 
 /* =========================================================
-   APP CONTAINER
+   MAIN APP
 ========================================================= */
 
 .main-content {
+
     width: 100%;
     max-width: 430px;
+
     min-height: 100vh;
 
     margin: 0 auto;
@@ -94,14 +113,16 @@ select {
     padding:
         18px
         15px
-        105px;
+        110px;
 
     background:
+
         radial-gradient(
             circle at 100% 0%,
             rgba(8, 122, 75, 0.08),
             transparent 30%
         ),
+
         linear-gradient(
             180deg,
             #fbfdfc 0%,
@@ -118,6 +139,7 @@ select {
 ========================================================= */
 
 .page-header {
+
     display: flex;
 
     align-items: flex-start;
@@ -131,10 +153,11 @@ select {
 
 
 /* =========================================================
-   HEADER TITLE
+   TITLE
 ========================================================= */
 
 .page-header h1 {
+
     color: var(--dark);
 
     font-size: 24px;
@@ -147,6 +170,7 @@ select {
 }
 
 .page-header h1::before {
+
     content: "PANEL PENGURUS";
 
     display: block;
@@ -163,6 +187,7 @@ select {
 }
 
 .page-header p {
+
     max-width: 220px;
 
     margin-top: 7px;
@@ -176,10 +201,11 @@ select {
 
 
 /* =========================================================
-   USER
+   USER INFO
 ========================================================= */
 
 .user-info {
+
     width: 105px;
 
     min-height: 42px;
@@ -200,14 +226,16 @@ select {
 
     border-radius: 13px;
 
-    background: rgba(255,255,255,.95);
+    background:
+        rgba(255, 255, 255, 0.95);
 
     box-shadow:
         0 5px 16px
-        rgba(8,122,75,.06);
+        rgba(8, 122, 75, 0.06);
 }
 
 .user-icon {
+
     width: 30px;
     height: 30px;
 
@@ -220,12 +248,14 @@ select {
 
     border-radius: 9px;
 
-    background: var(--primary-light);
+    background:
+        var(--primary-light);
 
     font-size: 13px;
 }
 
 .user-info strong {
+
     display: block;
 
     color: var(--dark);
@@ -234,6 +264,7 @@ select {
 }
 
 .user-info small {
+
     display: block;
 
     max-width: 57px;
@@ -257,6 +288,7 @@ select {
 ========================================================= */
 
 .content-card {
+
     width: 100%;
 
     padding:
@@ -271,7 +303,7 @@ select {
     border-radius: 19px;
 
     background:
-        rgba(255,255,255,.95);
+        rgba(255, 255, 255, 0.96);
 
     box-shadow:
         var(--shadow);
@@ -283,6 +315,7 @@ select {
 ========================================================= */
 
 .card-header {
+
     display: flex;
 
     align-items: center;
@@ -295,6 +328,7 @@ select {
 }
 
 .card-header h2 {
+
     color: var(--dark);
 
     font-size: 17px;
@@ -305,6 +339,7 @@ select {
 }
 
 .card-header p {
+
     margin-top: 3px;
 
     color: var(--muted);
@@ -316,16 +351,15 @@ select {
 
 
 /* =========================================================
-   TAMBAH JADWAL
+   PRIMARY BUTTON
 ========================================================= */
 
 .btn-primary {
+
     min-height: 38px;
 
     padding:
         0 12px;
-
-    border: none;
 
     border-radius: 11px;
 
@@ -348,11 +382,23 @@ select {
 
     box-shadow:
         0 5px 13px
-        rgba(8,122,75,.16);
+        rgba(8, 122, 75, 0.16);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.btn-primary:hover {
+
+    box-shadow:
+        0 7px 18px
+        rgba(8, 122, 75, 0.20);
 }
 
 .btn-primary:active {
-    transform: scale(.97);
+
+    transform: scale(0.97);
 }
 
 
@@ -361,10 +407,14 @@ select {
 ========================================================= */
 
 .search-container {
-    margin-bottom: 12px;
+
+    width: 100%;
+
+    margin-bottom: 13px;
 }
 
 .search-container input {
+
     width: 100%;
 
     height: 40px;
@@ -380,45 +430,57 @@ select {
 
     outline: none;
 
-    background: #fafd at;
-    background: #fbfdfc;
+    background:
+        #fbfdfc;
 
     color: var(--dark);
 
     font-size: 9px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .search-container input::placeholder {
+
     color: #9aa8a1;
 }
 
 .search-container input:focus {
-    border-color: var(--primary);
+
+    border-color:
+        var(--primary);
 
     box-shadow:
         0 0 0 3px
-        rgba(8,122,75,.06);
+        rgba(8, 122, 75, 0.06);
 }
 
 
 /* =========================================================
-   TABLE
+   TABLE CONTAINER
 ========================================================= */
 
 .table-container {
+
     width: 100%;
+
     overflow: visible;
 }
 
 .table-container table {
+
     width: 100%;
 
     border-collapse: separate;
 
-    border-spacing: 0 8px;
+    border-spacing:
+        0 8px;
 }
 
 .table-container thead {
+
     display: none;
 }
 
@@ -428,6 +490,7 @@ select {
 ========================================================= */
 
 .table-container tbody tr {
+
     position: relative;
 
     width: 100%;
@@ -443,14 +506,14 @@ select {
         auto
         auto
         auto
+        auto
         auto;
 
     column-gap: 10px;
 
-    padding:
-        11px;
+    padding: 11px;
 
-    min-height: 108px;
+    min-height: 120px;
 
     border:
         1px solid
@@ -471,17 +534,29 @@ select {
 
     box-shadow:
         0 5px 16px
-        rgba(8,122,75,.06);
+        rgba(8, 122, 75, 0.06);
 
     overflow: hidden;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.table-container tbody tr:hover {
+
+    box-shadow:
+        0 8px 20px
+        rgba(8, 122, 75, 0.10);
 }
 
 
 /* =========================================================
-   DEKORASI CARD
+   DECORATION
 ========================================================= */
 
 .table-container tbody tr::after {
+
     content: "✦";
 
     position: absolute;
@@ -490,7 +565,7 @@ select {
     bottom: 5px;
 
     color:
-        rgba(201,162,39,.20);
+        rgba(201, 162, 39, 0.20);
 
     font-size: 14px;
 
@@ -499,10 +574,11 @@ select {
 
 
 /* =========================================================
-   CELL
+   TABLE CELLS
 ========================================================= */
 
 .table-container tbody td {
+
     padding: 0;
 
     border: none;
@@ -514,14 +590,18 @@ select {
 
 
 /* =========================================================
-   NOMOR
+   NUMBER
 ========================================================= */
 
 .table-container tbody td:first-child {
+
     grid-column: 1;
-    grid-row: 1 / span 4;
+
+    grid-row:
+        1 / span 5;
 
     width: 55px;
+
     height: 70px;
 
     align-self: center;
@@ -540,7 +620,8 @@ select {
             #ccebd9
         );
 
-    color: var(--primary);
+    color:
+        var(--primary);
 
     font-size: 17px;
 
@@ -553,12 +634,17 @@ select {
 ========================================================= */
 
 .table-container tbody td:nth-child(4) {
+
     grid-column: 2;
+
     grid-row: 1;
 
     align-self: start;
 
-    color: var(--dark);
+    padding-top: 2px;
+
+    color:
+        var(--dark);
 
     font-size: 14px;
 
@@ -566,21 +652,22 @@ select {
 
     font-weight: 800;
 
-    padding-top: 2px;
-
     overflow-wrap: anywhere;
 }
 
 
 /* =========================================================
-   TANGGAL + WAKTU
+   TANGGAL
 ========================================================= */
 
 .table-container tbody td:nth-child(2) {
+
     grid-column: 2;
+
     grid-row: 2;
 
-    color: var(--gold);
+    color:
+        var(--gold);
 
     font-size: 9px;
 
@@ -591,17 +678,25 @@ select {
     margin-top: 3px;
 }
 
+
+/* =========================================================
+   WAKTU
+========================================================= */
+
 .table-container tbody td:nth-child(3) {
+
     grid-column: 2;
+
     grid-row: 2;
 
-    color: var(--gold);
+    margin-left: 78px;
+
+    color:
+        var(--gold);
 
     font-size: 9px;
 
     font-weight: 800;
-
-    margin-left: 76px;
 
     white-space: nowrap;
 }
@@ -612,10 +707,13 @@ select {
 ========================================================= */
 
 .table-container tbody td:nth-child(5) {
+
     grid-column: 2;
+
     grid-row: 3;
 
-    color: var(--text);
+    color:
+        var(--text);
 
     font-size: 9px;
 
@@ -630,10 +728,13 @@ select {
 ========================================================= */
 
 .table-container tbody td:nth-child(6) {
+
     grid-column: 2;
+
     grid-row: 4;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 9px;
 
@@ -648,10 +749,13 @@ select {
 ========================================================= */
 
 .table-container tbody td:nth-child(7) {
+
     grid-column: 2;
+
     grid-row: 5;
 
-    color: var(--primary);
+    color:
+        var(--primary);
 
     font-size: 9px;
 
@@ -660,15 +764,27 @@ select {
     overflow-wrap: anywhere;
 }
 
+.table-container tbody td:nth-child(7) a {
+
+    color:
+        var(--primary);
+
+    font-size: 8px;
+
+    font-weight: 700;
+}
+
 
 /* =========================================================
-   AKSI
+   ACTION
 ========================================================= */
 
 .table-container tbody td:last-child {
+
     grid-column: 3;
 
-    grid-row: 1 / span 5;
+    grid-row:
+        1 / span 5;
 
     align-self: center;
 
@@ -681,19 +797,22 @@ select {
     gap: 6px;
 
     min-width: 48px;
+
+    position: relative;
+
+    z-index: 2;
 }
 
 
 /* =========================================================
-   BUTTON EDIT
+   EDIT BUTTON
 ========================================================= */
 
 .table-container tbody td:last-child button:first-child {
+
     width: 48px;
 
     height: 31px;
-
-    border: none;
 
     border-radius: 9px;
 
@@ -708,24 +827,32 @@ select {
     font-weight: 700;
 
     cursor: pointer;
+
+    transition:
+        transform 0.15s ease;
+}
+
+.table-container tbody td:last-child button:first-child:hover {
+
+    transform:
+        translateY(-1px);
 }
 
 
 /* =========================================================
-   BUTTON HAPUS
+   DELETE BUTTON
 ========================================================= */
 
 .table-container tbody td:last-child button:last-child {
+
     width: 48px;
 
     height: 31px;
 
-    border: none;
-
     border-radius: 9px;
 
     background:
-        #fff0f0;
+        var(--danger-light);
 
     color:
         var(--danger);
@@ -735,19 +862,15 @@ select {
     font-weight: 700;
 
     cursor: pointer;
+
+    transition:
+        transform 0.15s ease;
 }
 
+.table-container tbody td:last-child button:last-child:hover {
 
-/* =========================================================
-   LINK
-========================================================= */
-
-.table-container tbody a {
-    color: var(--primary);
-
-    font-size: 8px;
-
-    font-weight: 700;
+    transform:
+        translateY(-1px);
 }
 
 
@@ -756,15 +879,40 @@ select {
 ========================================================= */
 
 .table-container tbody td.loading {
+
     display: block;
 
     width: 100%;
 
-    padding: 25px 5px;
+    padding:
+        30px 5px;
 
     text-align: center;
 
-    color: var(--muted);
+    color:
+        var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   EMPTY DATA
+========================================================= */
+
+.table-container tbody td.empty {
+
+    display: block;
+
+    width: 100%;
+
+    padding:
+        30px 10px;
+
+    text-align: center;
+
+    color:
+        var(--muted);
 
     font-size: 9px;
 }
@@ -775,6 +923,7 @@ select {
 ========================================================= */
 
 .modal {
+
     position: fixed;
 
     inset: 0;
@@ -789,18 +938,28 @@ select {
     padding: 14px;
 
     background:
-        rgba(18,56,42,.40);
+        rgba(18, 56, 42, 0.40);
 
     backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
         blur(5px);
 }
 
 .modal.show,
 .modal.active {
+
     display: flex;
 }
 
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
 .modal-content {
+
     width: 100%;
 
     max-width: 400px;
@@ -811,17 +970,42 @@ select {
 
     padding: 17px;
 
-    border-radius: 20px;
-
     border:
         1px solid
         var(--border);
 
-    background: white;
+    border-radius: 20px;
+
+    background:
+        white;
 
     box-shadow:
         0 20px 60px
-        rgba(0,0,0,.18);
+        rgba(0, 0, 0, 0.18);
+
+    animation:
+        modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px)
+            scale(0.98);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
 
@@ -830,6 +1014,7 @@ select {
 ========================================================= */
 
 .modal-header {
+
     display: flex;
 
     align-items: flex-start;
@@ -842,7 +1027,9 @@ select {
 }
 
 .modal-header h2 {
-    color: var(--dark);
+
+    color:
+        var(--dark);
 
     font-size: 18px;
 
@@ -850,28 +1037,47 @@ select {
 }
 
 .modal-header p {
+
     margin-top: 4px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 8px;
 }
 
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
 .close-button {
+
     width: 32px;
     height: 32px;
 
-    border: none;
+    flex-shrink: 0;
 
     border-radius: 10px;
 
-    background: #f0f5f2;
+    background:
+        #f0f5f2;
 
-    color: var(--dark);
+    color:
+        var(--dark);
 
     font-size: 20px;
 
     cursor: pointer;
+
+    transition:
+        background 0.15s ease;
+}
+
+.close-button:hover {
+
+    background:
+        #e4eee9;
 }
 
 
@@ -880,23 +1086,32 @@ select {
 ========================================================= */
 
 .form-group {
+
     margin-bottom: 12px;
 }
 
 .form-group label {
+
     display: block;
 
     margin-bottom: 5px;
 
-    color: var(--dark);
+    color:
+        var(--dark);
 
     font-size: 9px;
 
     font-weight: 700;
 }
 
+
+/* =========================================================
+   INPUT
+========================================================= */
+
 .form-group input,
 .form-group select {
+
     width: 100%;
 
     height: 40px;
@@ -912,43 +1127,162 @@ select {
 
     outline: none;
 
-    background: #fbfdfc;
+    background:
+        #fbfdfc;
 
-    color: var(--dark);
+    color:
+        var(--dark);
 
     font-size: 9px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: var(--primary);
+
+    border-color:
+        var(--primary);
 
     box-shadow:
         0 0 0 3px
-        rgba(8,122,75,.06);
-}
-
-.input-help {
-    display: block;
-
-    margin-top: 4px;
-
-    color: var(--muted);
-
-    font-size: 7px;
+        rgba(8, 122, 75, 0.06);
 }
 
 
 /* =========================================================
-   MESSAGE
+   INPUT HELP
+========================================================= */
+
+.input-help {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color:
+        var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PERIODE ABSENSI
+========================================================= */
+
+.periode-info {
+
+    width: 100%;
+
+    min-height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        10px 12px;
+
+    border:
+        1px solid
+        #e5e7eb;
+
+    border-radius: 11px;
+
+    background:
+        #f3f4f6;
+
+    color:
+        #6b7280;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+.periode-info.success {
+
+    background:
+        #ecfdf5;
+
+    color:
+        #047857;
+
+    border-color:
+        #a7f3d0;
+}
+
+.periode-info.error {
+
+    background:
+        #fef2f2;
+
+    color:
+        #b91c1c;
+
+    border-color:
+        #fecaca;
+}
+
+.periode-info strong {
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PERIODE BADGE
+========================================================= */
+
+.periode-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        5px 9px;
+
+    border-radius:
+        999px;
+
+    background:
+        #eef2ff;
+
+    color:
+        #4338ca;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
 ========================================================= */
 
 #form-message {
+
+    min-height: 12px;
+
     margin-top: 6px;
 
-    color: var(--danger);
+    color:
+        var(--danger);
 
     font-size: 8px;
+
+    line-height: 1.4;
 }
 
 
@@ -957,6 +1291,7 @@ select {
 ========================================================= */
 
 .form-actions {
+
     display: flex;
 
     justify-content: flex-end;
@@ -966,7 +1301,13 @@ select {
     margin-top: 16px;
 }
 
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
 .btn-secondary {
+
     height: 38px;
 
     padding:
@@ -991,12 +1332,19 @@ select {
     cursor: pointer;
 }
 
+.btn-secondary:hover {
+
+    background:
+        #eaf1ed;
+}
+
 
 /* =========================================================
    BOTTOM NAVIGATION
 ========================================================= */
 
 .sidebar {
+
     position: fixed;
 
     z-index: 9999;
@@ -1023,12 +1371,12 @@ select {
 
     border:
         1px solid
-        rgba(8,122,75,.10);
+        rgba(8, 122, 75, 0.10);
 
     border-radius: 20px;
 
     background:
-        rgba(255,255,255,.96);
+        rgba(255, 255, 255, 0.96);
 
     backdrop-filter:
         blur(18px);
@@ -1038,7 +1386,7 @@ select {
 
     box-shadow:
         0 12px 35px
-        rgba(8,122,75,.15);
+        rgba(8, 122, 75, 0.15);
 }
 
 
@@ -1047,6 +1395,7 @@ select {
 ========================================================= */
 
 .sidebar-header {
+
     display: none;
 }
 
@@ -1056,18 +1405,21 @@ select {
 ========================================================= */
 
 .sidebar-nav {
+
     width: 100%;
+
     height: 100%;
 
     display: grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(5, minmax(0, 1fr));
 
-    gap: 3px;
+    gap: 2px;
 }
 
 .sidebar-nav a {
+
     position: relative;
 
     height: 100%;
@@ -1083,14 +1435,19 @@ select {
 
     border-radius: 14px;
 
-    color: #8a9891;
+    color:
+        #8a9891;
 
     font-size: 6.5px;
 
     font-weight: 600;
+
+    transition:
+        background 0.15s ease;
 }
 
 .sidebar-nav a span {
+
     width: 30px;
     height: 27px;
 
@@ -1105,7 +1462,9 @@ select {
 }
 
 .sidebar-nav a.active {
-    color: var(--primary);
+
+    color:
+        var(--primary);
 
     background:
         linear-gradient(
@@ -1116,11 +1475,13 @@ select {
 }
 
 .sidebar-nav a.active span {
+
     background:
-        rgba(8,122,75,.07);
+        rgba(8, 122, 75, 0.07);
 }
 
 .sidebar-nav a.active::after {
+
     content: "";
 
     position: absolute;
@@ -1146,6 +1507,7 @@ select {
 ========================================================= */
 
 .sidebar-bottom {
+
     position: absolute;
 
     right: 0;
@@ -1154,6 +1516,7 @@ select {
 }
 
 #logout-button {
+
     height: 32px;
 
     padding:
@@ -1161,12 +1524,12 @@ select {
 
     border:
         1px solid
-        rgba(182,75,75,.12);
+        rgba(182, 75, 75, 0.12);
 
     border-radius: 10px;
 
     background:
-        rgba(255,255,255,.96);
+        rgba(255, 255, 255, 0.96);
 
     color:
         var(--danger);
@@ -1179,15 +1542,16 @@ select {
 
     box-shadow:
         0 4px 15px
-        rgba(0,0,0,.06);
+        rgba(0, 0, 0, 0.06);
 }
 
 
 /* =========================================================
-   DECORASI
+   CARD DECORATION
 ========================================================= */
 
 .content-card::after {
+
     content:
         "✦   ☾   ✦";
 
@@ -1201,7 +1565,7 @@ select {
     text-align: center;
 
     color:
-        rgba(201,162,39,.40);
+        rgba(201, 162, 39, 0.40);
 
     font-size: 10px;
 
@@ -1211,22 +1575,28 @@ select {
 
 /* =========================================================
    DESKTOP
-   TETAP HP
+   TETAP MODEL HP
 ========================================================= */
 
 @media (min-width: 431px) {
 
     body {
-        background: #dfe7e2;
+
+        background:
+            #dfe7e2;
     }
 
     .main-content {
+
         width: 430px;
+
         max-width: 430px;
     }
 
     .sidebar {
+
         width: 410px;
+
         max-width: 410px;
     }
 }
@@ -1239,23 +1609,29 @@ select {
 @media (max-width: 360px) {
 
     .main-content {
+
         padding-left: 12px;
+
         padding-right: 12px;
     }
 
     .page-header h1 {
+
         font-size: 22px;
     }
 
     .page-header p {
+
         font-size: 8px;
     }
 
     .user-info {
+
         width: 94px;
     }
 
     .content-card {
+
         padding:
             13px
             11px
@@ -1263,39 +1639,48 @@ select {
     }
 
     .card-header h2 {
+
         font-size: 16px;
     }
 
     .card-header p {
+
         font-size: 7px;
     }
 
     .btn-primary {
-        padding: 0 9px;
+
+        padding:
+            0 9px;
+
         font-size: 7px;
     }
 
     .table-container tbody tr {
+
         grid-template-columns:
             50px
-            minmax(0,1fr)
+            minmax(0, 1fr)
             45px;
 
         column-gap: 8px;
 
-        min-height: 103px;
+        min-height: 115px;
 
         padding: 10px;
     }
 
     .table-container tbody td:first-child {
+
         width: 50px;
+
         height: 64px;
 
         font-size: 15px;
     }
 
     .table-container tbody td:nth-child(4) {
+
         font-size: 13px;
     }
 
@@ -1304,19 +1689,33 @@ select {
     .table-container tbody td:nth-child(5),
     .table-container tbody td:nth-child(6),
     .table-container tbody td:nth-child(7) {
+
         font-size: 8px;
+    }
+
+    .table-container tbody td:nth-child(3) {
+
+        margin-left: 70px;
     }
 
     .table-container tbody td:last-child button:first-child,
     .table-container tbody td:last-child button:last-child {
+
         width: 45px;
+
         height: 29px;
 
         font-size: 6.5px;
     }
 
     .sidebar-nav a {
+
         font-size: 6px;
+    }
+
+    .modal-content {
+
+        padding: 14px;
     }
 }
 
@@ -1330,18 +1729,72 @@ select {
 ) {
 
     .main-content {
+
         padding-bottom:
             calc(
-                105px +
+                110px +
                 env(safe-area-inset-bottom)
             );
     }
 
     .sidebar {
+
         bottom:
             calc(
                 10px +
                 env(safe-area-inset-bottom)
             );
     }
+}
+
+
+/* =========================================================
+   SCROLLBAR MODAL
+========================================================= */
+
+.modal-content::-webkit-scrollbar {
+
+    width: 5px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+
+    background:
+        #f1f5f3;
+
+    border-radius: 20px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+
+    background:
+        #c9ddd3;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   DISABLED BUTTON
+========================================================= */
+
+button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+
+    background:
+        rgba(8, 122, 75, 0.15);
+
+    color:
+        var(--dark);
 }
