@@ -8,12 +8,12 @@ import { auth, db } from "./firebase-config.js";
 import {
     onAuthStateChanged,
     signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
     collection,
     getDocs
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 // ================================
